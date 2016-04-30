@@ -41,7 +41,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param string $name
-     * @return Variant
+     * @return $this
      */
     public function setName($name) {
         $this->name = $name;
@@ -57,7 +57,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param string $ean
-     * @return AbstractItem
+     * @return $this
      */
     public function setEan($ean) {
         $this->ean = $ean;
@@ -73,7 +73,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param string $code
-     * @return AbstractItem
+     * @return $this
      */
     public function setCode($code) {
         $this->code = $code;
@@ -89,7 +89,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param \DateTime $updated
-     * @return AbstractItem
+     * @return $this
      */
     public function setUpdated(\DateTime $updated) {
         $this->updated = $updated;
@@ -105,7 +105,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param float $price
-     * @return AbstractItem
+     * @return $this
      */
     public function setPrice($price) {
         $this->price = $price;
@@ -121,7 +121,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param float $priceRetail
-     * @return AbstractItem
+     * @return $this
      */
     public function setPriceRetail($priceRetail) {
         $this->priceRetail = $priceRetail;
@@ -137,7 +137,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param Image[] $images
-     * @return AbstractItem
+     * @return $this
      */
     public function setImages(array $images) {
         $this->images = [];
@@ -169,7 +169,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param AttributeValue[] $attributeValues
-     * @return AbstractItem
+     * @return $this
      */
     public function setAttributes(array $attributeValues) {
         $this->attributes = [];
@@ -193,7 +193,7 @@ class AbstractItem extends AbstractRecord {
 
     /**
      * @param Availability $availability
-     * @return AbstractItem
+     * @return $this
      */
     public function setAvailability(Availability $availability) {
         $this->availability = $availability;
