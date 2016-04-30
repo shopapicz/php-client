@@ -156,7 +156,15 @@ class AbstractItem extends AbstractRecord {
      * @return AttributeValue[]
      */
     public function getAttributes() {
-        return $this->attributes;
+        return array_values($this->attributes);
+    }
+
+    /**
+     * @param string $uid
+     * @return null|AttributeValue
+     */
+    public function getAttribute($uid) {
+        return isset($this->attributes[$uid]) ? $this->attributes[$uid] : null;
     }
 
     /**
@@ -172,7 +180,7 @@ class AbstractItem extends AbstractRecord {
     }
 
     public function addAttribute(AttributeValue $attributeValue) {
-        $this->attributes[] = $attributeValue;
+        $this->attributes[$attributeValue->getAttribute()->getUid()] = $attributeValue;
         return $this;
     }
 
