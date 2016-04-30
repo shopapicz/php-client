@@ -4,7 +4,7 @@ namespace ShopAPI\TestClient;
 use ShopAPI\Client\Entity\Availability;
 use ShopAPI\Client\XmlDecoder;
 
-class XmlReaderTest extends \PHPUnit_Framework_TestCase {
+class XmlDecoderTest extends \PHPUnit_Framework_TestCase {
     function testAvailability() {
         $decoder = new XmlDecoder();
         $availability = $decoder->decodeAvailability($this->getXml()->availability);
