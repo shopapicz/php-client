@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export generated="2016-04-30 16:21:06" source="PerfektníPrádlo.cz" currency="CZK">
+    <product created="2016-03-07 15:30:05" updated="2016-03-28 13:59:06" deleted="false">
+        <uid>2mtqj837tow0</uid>
+        <name>Hladká vyztužená podprsenka CHANGE Tactel černá</name>
+        <ean>88000011212</ean>
+        <code>CB19604108-BLACK</code>
+        <description>description</description>
+        <fulldescription>fulldescription</fulldescription>
+        <warranty>24</warranty>
+        <url>https://www.perfektnipradlo.cz/Podprsenky/vyztuzene/Hladka-vyztuzena-podprsenka-CHANGE-Tactel-cerna</url>
+        <vat>21</vat>
+        <price_vat>420.00</price_vat>
+        <price_retail_vat>635.00</price_retail_vat>
+        <brand uid="89suej9s5ukg">CHANGE Lingerie</brand>
+        <availability code="in_stock" hours="0" quantity="6">ihned k odeslání</availability>
+        <category uid="eab3s6feorw4">Podprsenky|vyztužené</category>
+        <img uid="v2ae564zkhcs" updated="2016-03-07 15:30:04">https://cdn.shopapi.cz/img/orig/9/8/69/986943cc69c7292472e6f9146934bfa8.jpg</img>
+        <img uid="8lir6lsop2ck" updated="2016-03-07 15:30:05">https://cdn.shopapi.cz/img/orig/3/d/60/3d6058476736bc3cd511008d8b1a92af.jpg</img>
+        <img uid="1ldzlxumqjwk" updated="2016-03-07 15:30:05">https://cdn.shopapi.cz/img/orig/c/7/b9/c7b955ce143370c5e9895ef9ab2d5c76.jpg</img>
+        <attribute uid="b9i9ssr4lxk4" updated="2015-09-15 00:52:13">
+            <name>Barva</name>
+            <value>bílá</value>
+            <value>modrá</value>
+            <value>ocelová</value>
+        </attribute>
+        <attribute uid="bku9d587tvk0" updated="2015-09-15 00:52:13">
+            <name>Typ</name>
+            <value>ostatní</value>
+        </attribute>
+        <variant updated="2016-03-21 15:17:29">
+            <name>75E</name>
+            <uid>3vbdae456tc0</uid>
+            <availability code="in_stock" hours="0" quantity="1">ihned k odeslání</availability>
+            <code>CB19604108-BLACK-E75</code>
+            <img uid="1ldzlxumqjwk" updated="2016-03-07 15:30:05">https://cdn.shopapi.cz/img/orig/c/7/b9/c7b955ce143370c5e9895ef9ab2d5c76.jpg</img>
+            <price_vat>420.00</price_vat>
+            <price_retail_vat>635.00</price_retail_vat>
+            <attribute uid="b9i9ssr4lxk4" updated="2015-09-15 00:52:13">
+                <name>Barva</name>
+                <value>bílá</value>
+                <value>modrá</value>
+                <value>ocelová</value>
+            </attribute>
+            <attribute uid="bku9d587tvk0" updated="2015-09-15 00:52:13">
+                <name>Typ</name>
+                <value>ostatní</value>
+            </attribute>
+        </variant>
+        <variant updated="2016-03-21 15:17:29">
+            <name>70A</name>
+            <uid>28q0qb1pvl5w</uid>
+            <availability code="in_stock" hours="0" quantity="1">ihned k odeslání</availability>
+            <code>CB19604108-BLACK-A70</code>
+        </variant>
+    </product>
+</export>
