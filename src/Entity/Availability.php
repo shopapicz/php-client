@@ -3,11 +3,11 @@ namespace ShopAPI\Client\Entity;
 
 class Availability {
 
-    const IN_STOCK = 1;
-    const OUT_OF_STOCK = 2;
-    const PRE_ORDER = 3;
-    const UNKNOWN = 4;
-    const UNAVAILABLE = 5;
+    const IN_STOCK = 'in_stock';
+    const OUT_OF_STOCK = 'out_of_stock';
+    const PRE_ORDER = 'pre_order';
+    const UNKNOWN = 'unknown';
+    const UNAVAILABLE = 'unavailable';
 
     /**
      * @var string

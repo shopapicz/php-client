@@ -132,14 +132,6 @@ class XmlDecoder {
         return $this->brands[(string)$it['uid']];
     }
 
-    protected $availabilityCodes = [
-        'in_stock' => Availability::IN_STOCK,
-        'out_of_stock' => Availability::OUT_OF_STOCK,
-        'unavailable' => Availability::UNAVAILABLE,
-        'pre_order' => Availability::PRE_ORDER,
-        'unknown' => Availability::UNKNOWN,
-    ];
-
     /**
      * @var Category[]
      */
@@ -202,7 +194,7 @@ class XmlDecoder {
     public function decodeAvailability(\SimpleXMLElement $it) {
         $availability = new Availability();
         if(isset($it['code'])) {
-            $availability->setCode($this->availabilityCodes[(string)$it['code']]);
+            $availability->setCode((string)$it['code']);
         }
         if(isset($it['hours'])) {
             $availability->setHours((int)$it['hours']);
