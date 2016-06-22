@@ -77,6 +77,8 @@ class XmlDecoderTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals('b9i9ssr4lxk4', $product->getAttribute('b9i9ssr4lxk4')->getAttribute()->getUid());
         $this->assertNull($product->getAttribute('xxx'));
+
+        $this->assertEquals('0f26c54d0a9cd4dbad6c096cfd587847', $product->getChecksum());
     }
 
     function testVariant() {

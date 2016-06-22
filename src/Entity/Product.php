@@ -43,6 +43,8 @@ class Product extends AbstractItem {
      */
     protected $deleted;
 
+    protected $checksum;
+
     /**
      * @return Variant[]
      */
@@ -216,6 +218,22 @@ class Product extends AbstractItem {
      */
     public function setDeleted($deleted) {
         $this->deleted = $deleted;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChecksum() {
+        return $this->checksum;
+    }
+
+    /**
+     * @param string $checksum
+     * @return Product
+     */
+    public function setChecksum($checksum) {
+        $this->checksum = $checksum;
         return $this;
     }
 

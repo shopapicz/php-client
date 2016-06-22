@@ -14,6 +14,10 @@ use ShopAPI\Client\Entity\Variant;
 class XmlDecoder {
     const DATE_FORMAT = 'Y-m-d H:i:s';
 
+    /**
+     * @param \SimpleXMLElement $it
+     * @return Product
+     */
     public function decodeProduct(\SimpleXMLElement $it) {
         if(!isset($it->uid)) {
             throw new InputException('Missing product attribute "uid"');
@@ -63,6 +67,7 @@ class XmlDecoder {
             }
         }
 
+        $product->setChecksum(md5($it->asXML()));
         $this->decodeItem($it, $product);
 
         return $product;
