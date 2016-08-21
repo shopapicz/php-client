@@ -6,23 +6,24 @@ use ShopAPI\Client\Entity\Product;
 class XmlReader {
 
     /**
-     * @param string $url
+     * @param string $uid
      * @param null $updatedFrom
      * @param bool $preview
      * @return \Generator|Entity\Product[]
      */
-    public function readFromUrl($url, $updatedFrom = null, $preview = false) {
-        if(!preg_match('~https://shopapi.cz/feed/([a-z0-9]+)~', $url, $m)) {
-            throw new ArgumentException('Invalid feed URL');
+    public function readFromUrl($uid, $updatedFrom = null, $preview = false) {
+        if(preg_match('~https://shopapi.cz/feed/([a-z0-9]+)~', $uid, $m)) {
+            trigger_error("Deprecated parameter \$url - use export UID", E_USER_DEPRECATED);
+            $uid = $m[1];
         }
 
         $tmpFile = tmpfile();
         if(!$tmpFile) {
-            throw new IOException('Temporary file couldn\t be created');
+            throw new IOException('Temporary file couldn\'t be created');
         }
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->createUrl($m[1], $updatedFrom, $preview));
+        curl_setopt($ch, CURLOPT_URL, $this->createUrl($uid, $updatedFrom, $preview));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_FILE, $tmpFile);
