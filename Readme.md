@@ -1,4 +1,4 @@
-Klient pro jednoduché napojení na produktové feedy dodavatelé v [ShopAPI.cz](https://shopapi.cz).
+Klient pro jednoduché napojení na produktové feedy dodavatelů v [ShopAPI.cz](https://shopapi.cz).
 
 Podrobná dokumentace API v [docs/api.md](docs/api.md).
 
