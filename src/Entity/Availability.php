@@ -83,4 +83,32 @@ class Availability {
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isInStock() {
+        return $this->getCode() === self::IN_STOCK;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOutOfStock() {
+        return $this->getCode() === self::OUT_OF_STOCK;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPreOrder() {
+        return $this->getCode() === self::PRE_ORDER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnavailable() {
+        return $this->getCode() === self::UNAVAILABLE;
+    }
+
 }
