@@ -227,6 +227,7 @@ class XmlDecoder {
         $availability = new Image((string)$it['uid']);
         $availability->setUpdated(\DateTime::createFromFormat(self::DATE_FORMAT, (string)$it['updated']));
         $availability->setUrl((string)$it);
+        $availability->setMd5((string)$it['md5']);
 
         return $availability;
     }

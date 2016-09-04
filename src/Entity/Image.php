@@ -13,6 +13,11 @@ class Image extends AbstractRecord {
     protected $updated;
 
     /**
+     * @var string
+     */
+    protected $md5;
+
+    /**
      * @return string
      */
     public function getUrl() {
@@ -44,5 +49,19 @@ class Image extends AbstractRecord {
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getMd5() {
+        return $this->md5;
+    }
 
+    /**
+     * @param string $md5
+     * @return Image
+     */
+    public function setMd5($md5) {
+        $this->md5 = $md5;
+        return $this;
+    }
 }
