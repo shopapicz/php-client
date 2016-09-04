@@ -32,7 +32,7 @@ foreach ($reader->readFromUrl('dddd8888eeee') as $product) {
 ```
 
 ## Kódy
-**Identifikátor UID je unikátní a je dostupný vždy.** Je přidělován v ShopAPI a doporučujeme ho použít pro párování. Je ale nevhodný pro komunikaci s dodavatelem, protože ten má zboží vedené pod vlastní kódy. Doporučujeme proto ukládat i *code* a *EAN*, pokud jsou dostupné.
+**Identifikátor UID je unikátní a je dostupný vždy.** Je přidělován v ShopAPI a doporučujeme ho použít pro párování. Je ale nevhodný pro komunikaci s dodavatelem, protože ten má zboží vedené pod vlastními kódy. Doporučujeme proto ukládat i *code* a *EAN*, pokud jsou dostupné.
 
 UID doporučujeme používat pouze interně v aplikaci a zákazníkům/uživatelům ho vůbec nezobrazovat.
 
