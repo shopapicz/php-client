@@ -1,7 +1,7 @@
 <?php
 namespace ShopAPI\Client\Entity;
 
-class AbstractItem extends AbstractRecord {
+abstract class AbstractItem extends AbstractRecord {
     /**
      * @var string
      */

@@ -29,14 +29,14 @@ class Category extends AbstractRecord {
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getPath() {
         return $this->path;
     }
 
     /**
-     * @param \string[] $path
+     * @param string[] $path
      * @return Category
      */
     public function setPath($path) {
