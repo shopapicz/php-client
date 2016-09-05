@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ShopAPIcz/Client.svg?branch=master)](https://travis-ci.org/ShopAPIcz/Client)
+[![Latest Stable Version](https://poser.pugx.org/shopapicz/client/v/stable)](https://packagist.org/packages/shopapicz/client)
+
+
 Klient pro jednoduché napojení na produktové feedy dodavatelů v [ShopAPI.cz](https://shopapi.cz).
 
 Podrobná dokumentace API v [docs/api.md](docs/api.md).
