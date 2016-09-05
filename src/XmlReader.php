@@ -32,8 +32,8 @@ class XmlReader {
         ]);
         curl_setopt($ch, CURLOPT_HEADER, false);
 
-        if(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
-            curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
+        if(class_exists('Composer\CaBundle\CaBundle')) {
+            curl_setopt($ch, CURLOPT_CAINFO, \Composer\CaBundle\CaBundle::getBundledCaBundlePath());
         }
         $result = curl_exec($ch);
         if($result === false) {

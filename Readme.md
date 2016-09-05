@@ -14,9 +14,9 @@ Při použití klienta jste úplně odstíněni od XML a pracujete přímo s jed
 ## Instalace
 ```bash
 composer require shopapicz/client
-composer require kdyby/curl-ca-bundle       # nepovinné, doporučené
+composer require composer/ca-bundle       # nepovinné, doporučené
 ```
-Doporučujeme nainstalovat i kdyby/curl-ca-bundle kvůli certifikátům, pokud váš server nemá aktuální.
+Doporučujeme nainstalovat i [composer/ca-bundle](https://github.com/composer/ca-bundle) kvůli certifikátům, pokud váš server nemá aktuální.
 
 ## Použití
 ```php

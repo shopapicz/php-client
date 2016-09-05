@@ -22,7 +22,7 @@
     "phpunit/phpunit": "~5.0"
   },
   "suggest": {
-    "kdyby/curl-ca-bundle": "Https certificates bundle"
+    "composer/ca-bundle": "Https certificates bundle"
   },
   "autoload": {
     "psr-4": {
