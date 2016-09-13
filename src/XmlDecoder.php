@@ -10,6 +10,7 @@ use ShopAPI\Client\Entity\Category;
 use ShopAPI\Client\Entity\Image;
 use ShopAPI\Client\Entity\Product;
 use ShopAPI\Client\Entity\Variant;
+use ShopAPI\Client\Entity\Video;
 
 class XmlDecoder {
     const DATE_FORMAT = 'Y-m-d H:i:s';
@@ -58,6 +59,12 @@ class XmlDecoder {
         if(isset($it->category)) {
             foreach ($it->category as $category) {
                 $product->addCategory($this->decodeCategory($category));
+            }
+        }
+
+        if(isset($it->video)) {
+            foreach ($it->video as $video) {
+                $product->addVideo($this->decodeVideo($video));
             }
         }
 
@@ -230,6 +237,33 @@ class XmlDecoder {
         $availability->setMd5((string)$it['md5']);
 
         return $availability;
+    }
+
+    /**
+     * @param \SimpleXMLElement|\SimpleXMLElement[] $it
+     * @return Video
+     */
+    public function decodeVideo(\SimpleXMLElement $it) {
+        if(!isset($it['uid'])) {
+            throw new InputException('Missing video attribute "uid"');
+        }
+        if(!isset($it['code'])) {
+            throw new InputException('Missing video attribute "code"');
+        }
+        if(!isset($it['type'])) {
+            throw new InputException('Missing video attribute "type"');
+        }
+        if(!isset($it['updated'])) {
+            throw new InputException('Missing video attribute "updated"');
+        }
+        $video = new Video((string)$it['uid']);
+        $video->setUpdated(\DateTime::createFromFormat(self::DATE_FORMAT, (string)$it['updated']));
+        $video->setUrl((string)$it);
+        $video->setCode((string)$it['code']);
+        $video->setType((string)$it['type']);
+        $video->setDuration(\DateTime::createFromFormat('H:m:i', $it['duration']));
+
+        return $video;
     }
 
     /**

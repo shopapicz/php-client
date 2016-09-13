@@ -14,6 +14,11 @@ class Product extends AbstractItem {
     protected $categories = [];
 
     /**
+     * @var Video[]
+     */
+    protected $videos = [];
+
+    /**
      * @var string
      */
     protected $description, $fullDescription, $url;
@@ -89,6 +94,30 @@ class Product extends AbstractItem {
         $this->categories = [];
         foreach ($categories as $category) {
             $this->addCategory($category);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Video[]
+     */
+    public function getVideos() {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video) {
+        $this->videos[] = $video;
+        return $this;
+    }
+
+    /**
+     * @param Video[] $videos
+     * @return Product
+     */
+    public function setVideos(array $videos) {
+        $this->categories = [];
+        foreach ($videos as $video) {
+            $this->addVideo($video);
         }
         return $this;
     }
