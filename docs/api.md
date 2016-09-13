@@ -58,6 +58,7 @@
 | getUid | string |   |  |
 | getVariants | [Variant](#variant)[] |   |  |
 | getCategories | [Category](#category)[] |   |  |
+| getVideos | [Video](#video)[] |   |  |
 | getDescription | string |   |  |
 | getFullDescription | string |   |  |
 | getUrl | string |   |  |
@@ -103,4 +104,16 @@
 | getAttributes | [AttributeValue](#attributevalue)[] |   |  |
 | getAttribute | null&#124;[AttributeValue](#attributevalue) | uid  |  |
 | getAvailability | [Availability](#availability) |   |  |
+| getUid | string |   |  |
+## Video
+| Method | Return type | Arguments |Description |
+| ------------- |-------------| -----| -----|
+| getUid | string |   |  |
+| getUrl | string |   |  |
+| getUpdated | \DateTime |   |  |
+| getDuration | \DateTime |   |  |
+| getType | string |   |  |
+| isTypeYoutube | bool |   |  |
+| isTypeVimeo | bool |   |  |
+| getCode | string |   |  |
 | getUid | string |   |  |
