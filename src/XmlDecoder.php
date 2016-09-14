@@ -258,10 +258,14 @@ class XmlDecoder {
         }
         $video = new Video((string)$it['uid']);
         $video->setUpdated(\DateTime::createFromFormat(self::DATE_FORMAT, (string)$it['updated']));
-        $video->setUrl((string)$it);
+        if(isset($it->url)) {
+            $video->setUrl((string)$it->url);
+        }
+        if(isset($it->duration)) {
+            $video->setUrl(\DateTime::createFromFormat('H:m:i', $it->duration));
+        }
         $video->setCode((string)$it['code']);
         $video->setType((string)$it['type']);
-        $video->setDuration(\DateTime::createFromFormat('H:m:i', $it['duration']));
 
         return $video;
     }
