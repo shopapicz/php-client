@@ -65,9 +65,14 @@ class XmlReader {
      * @param $xmlFilePath
      * @return \Generator|Product[]
      */
-    public function readFromPath($xmlFilePath) {
+    public function readFromPath(string $xmlFilePath) {
+        if(!file_exists($xmlFilePath)) {
+            throw new IOException('File "' . $xmlFilePath . '" doesn\'t exist');
+        }
         $xml = new \XMLReader();
-        $xml->open($xmlFilePath);
+        if(!$xml->open($xmlFilePath)) {
+            throw new IOException('Couldn\'t open file ' . $xmlFilePath);
+        }
 
         while ($xml->read() && $xml->name !== 'product') ;
 
