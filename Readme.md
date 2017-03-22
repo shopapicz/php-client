@@ -120,3 +120,42 @@ foreach ($reader->readFromUrl('dddd8888eeee') as $product) {
 }
 
 ```
+
+# API
+Kromě XML je možné používat také [REST API](https://shopapi.cz/api/1/docs). Údaje pro API jsou generovány v ShopAPI.cz pro každý export zvlášť.
+```php
+<?php
+use ShopAPI\Client\Api\ApiClient;
+use ShopAPI\Client\Api\ApiConfig;
+
+$client = new ApiClient(new ApiConfig('username', 'password'));
+```
+
+### Odeslání nové objednávky
+```php
+<?php
+use ShopAPI\Client\Api\ApiClient;
+use ShopAPI\Client\Api\ApiConfig;
+use ShopAPI\Client\Api\OrderRequest\OrderRequest;
+use ShopAPI\Client\Entity\Address;
+
+$orderRequest = new OrderRequest();
+$orderRequest
+    ->setNote('Please hurry!')
+    ->setDeliveryByUid('ogd9d5d44h')
+    ->addItemByUid('w5d5v5vd5f', 2)
+    ->setDeliveryAddress((new Address())
+        ->setFirstName('John')
+        ->setLastName('Smith')
+        ->setStreet('Main Street')
+        ->setHouseNumber('10a')
+        ->setCity('Prague')
+        ->setCountry('CZ')
+    );
+
+$client = new ApiClient(new ApiConfig('username', 'password'));
+$orderResponse = $client->createOrder($orderRequest);
+
+echo $orderResponse->getCode(); // order code
+echo $orderResponse->getMessage();
+```

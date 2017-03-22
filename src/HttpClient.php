@@ -4,9 +4,23 @@ namespace ShopAPI\Client;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
-class HttpClient {
+final class HttpClient {
     public function get(string $url): ResponseInterface {
         $ch = $this->createCurl($url);
+        return $this->send($ch);
+    }
+
+    public function postJson(string $url, array $data, string $username, string $password) {
+        $data = json_encode($data);
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Content-Length' => strlen($data),
+        ];
+        $ch = $this->createCurl($url, $headers);
+        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         return $this->send($ch);
     }
 
@@ -15,7 +29,7 @@ class HttpClient {
         curl_setopt($ch, CURLOPT_FILE, $file);
         $response = $this->send($ch);
         if($response->getStatusCode() !== 200) {
-            throw new IOException('ShopAPI HTTP request failed with code : HTTP ' . $response->getStatusCode());
+            throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());
         }
         return $response;
     }
@@ -33,15 +47,15 @@ class HttpClient {
         return new Response($httpCode, explode("\r\n", $header), $body);
     }
 
-    private function createCurl(string $url) {
+    private function createCurl(string $url, array $headers = []) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_ENCODING, '');
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge([
             'User-agent' => 'Mozilla/5.0 (compatible; ShopAPI/0.1; +https://shopapi.cz)'
-        ]);
+        ], $headers));
         curl_setopt($ch, CURLOPT_HEADER, true);
 
         if(class_exists('Composer\CaBundle\CaBundle')) {
