@@ -32,98 +32,56 @@ abstract class AbstractItem extends AbstractRecord {
      */
     protected $availability;
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName():?string {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name) {
+    public function setName(?string $name): self {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getEan() {
+    public function getEan():?string {
         return $this->ean;
     }
 
-    /**
-     * @param string $ean
-     * @return $this
-     */
-    public function setEan($ean) {
+    public function setEan(?string $ean): self {
         $this->ean = $ean;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCode() {
+    public function getCode():?string {
         return $this->code;
     }
 
-    /**
-     * @param string $code
-     * @return $this
-     */
-    public function setCode($code) {
+    public function setCode(?string $code): self {
         $this->code = $code;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated() {
+    public function getUpdated(): \DateTime {
         return $this->updated;
     }
 
-    /**
-     * @param \DateTime $updated
-     * @return $this
-     */
-    public function setUpdated(\DateTime $updated) {
+    public function setUpdated(\DateTime $updated): self {
         $this->updated = $updated;
         return $this;
     }
 
-    /**
-     * @return float
-     */
-    public function getPrice() {
+    public function getPrice():?float {
         return $this->price;
     }
 
-    /**
-     * @param float $price
-     * @return $this
-     */
-    public function setPrice($price) {
+    public function setPrice(?float $price): self {
         $this->price = $price;
         return $this;
     }
 
-    /**
-     * @return float
-     */
-    public function getPriceRetail() {
+    public function getPriceRetail():?float {
         return $this->priceRetail;
     }
 
-    /**
-     * @param float $priceRetail
-     * @return $this
-     */
-    public function setPriceRetail($priceRetail) {
+    public function setPriceRetail(?float $priceRetail): self {
         $this->priceRetail = $priceRetail;
         return $this;
     }
@@ -131,15 +89,11 @@ abstract class AbstractItem extends AbstractRecord {
     /**
      * @return Image[]
      */
-    public function getImages() {
+    public function getImages(): array {
         return $this->images;
     }
 
-    /**
-     * @param Image[] $images
-     * @return $this
-     */
-    public function setImages(array $images) {
+    public function setImages(array $images): self {
         $this->images = [];
         foreach ($images as $image) {
             $this->addImage($image);
@@ -147,7 +101,7 @@ abstract class AbstractItem extends AbstractRecord {
         return $this;
     }
 
-    public function addImage(Image $image) {
+    public function addImage(Image $image): self {
         $this->images[] = $image;
         return $this;
     }
@@ -155,15 +109,11 @@ abstract class AbstractItem extends AbstractRecord {
     /**
      * @return AttributeValue[]
      */
-    public function getAttributes() {
+    public function getAttributes(): array {
         return array_values($this->attributes);
     }
 
-    /**
-     * @param string $uid
-     * @return null|AttributeValue
-     */
-    public function getAttribute($uid) {
+    public function getAttribute(string $uid):?AttributeValue {
         return isset($this->attributes[$uid]) ? $this->attributes[$uid] : null;
     }
 
@@ -171,7 +121,7 @@ abstract class AbstractItem extends AbstractRecord {
      * @param AttributeValue[] $attributeValues
      * @return $this
      */
-    public function setAttributes(array $attributeValues) {
+    public function setAttributes(array $attributeValues): self {
         $this->attributes = [];
         foreach ($attributeValues as $attributeValue) {
             $this->addAttribute($attributeValue);
@@ -179,23 +129,16 @@ abstract class AbstractItem extends AbstractRecord {
         return $this;
     }
 
-    public function addAttribute(AttributeValue $attributeValue) {
+    public function addAttribute(AttributeValue $attributeValue): self {
         $this->attributes[$attributeValue->getAttribute()->getUid()] = $attributeValue;
         return $this;
     }
 
-    /**
-     * @return Availability
-     */
-    public function getAvailability() {
+    public function getAvailability(): Availability {
         return $this->availability;
     }
 
-    /**
-     * @param Availability $availability
-     * @return $this
-     */
-    public function setAvailability(Availability $availability) {
+    public function setAvailability(Availability $availability): self {
         $this->availability = $availability;
         return $this;
     }

@@ -12,18 +12,11 @@ class Category extends AbstractRecord {
      */
     protected $path;
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return Category
-     */
-    public function setName($name) {
+    public function setName(string $name): self {
         $this->name = $name;
         return $this;
     }
@@ -31,7 +24,7 @@ class Category extends AbstractRecord {
     /**
      * @return string[]
      */
-    public function getPath() {
+    public function getPath(): array {
         return $this->path;
     }
 
@@ -39,7 +32,7 @@ class Category extends AbstractRecord {
      * @param string[] $path
      * @return Category
      */
-    public function setPath($path) {
+    public function setPath(array $path): self {
         $this->path = $path;
         return $this;
     }

@@ -19,95 +19,55 @@ class Availability {
      */
     protected $hours, $code, $quantity;
 
-    /**
-     * @return string
-     */
-    public function getText() {
+    public function getText():?string {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return Availability
-     */
-    public function setText($text) {
+    public function setText(?string $text): self {
         $this->text = $text;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getHours() {
+    public function getHours():?int {
         return $this->hours;
     }
 
-    /**
-     * @param int $hours
-     * @return Availability
-     */
-    public function setHours($hours) {
+    public function setHours(?int $hours) {
         $this->hours = $hours;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getCode() {
+    public function getCode():?string {
         return $this->code;
     }
 
-    /**
-     * @param int $code
-     * @return Availability
-     */
-    public function setCode($code) {
+    public function setCode(?string $code): self {
         $this->code = $code;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getQuantity() {
+    public function getQuantity():?int {
         return $this->quantity;
     }
 
-    /**
-     * @param int $quantity
-     * @return Availability
-     */
-    public function setQuantity($quantity) {
+    public function setQuantity(?int $quantity): self {
         $this->quantity = $quantity;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isInStock() {
+    public function isInStock(): bool {
         return $this->getCode() === self::IN_STOCK;
     }
 
-    /**
-     * @return bool
-     */
-    public function isOutOfStock() {
+    public function isOutOfStock(): bool {
         return $this->getCode() === self::OUT_OF_STOCK;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPreOrder() {
+    public function isPreOrder(): bool {
         return $this->getCode() === self::PRE_ORDER;
     }
 
-    /**
-     * @return bool
-     */
-    public function isUnavailable() {
+    public function isUnavailable(): bool {
         return $this->getCode() === self::UNAVAILABLE;
     }
 

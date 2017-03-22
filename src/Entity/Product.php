@@ -53,11 +53,11 @@ class Product extends AbstractItem {
     /**
      * @return Variant[]
      */
-    public function getVariants() {
+    public function getVariants(): array {
         return $this->variants;
     }
 
-    public function addVariant(Variant $variant) {
+    public function addVariant(Variant $variant): self {
         $this->variants[] = $variant;
         return $this;
     }
@@ -66,7 +66,7 @@ class Product extends AbstractItem {
      * @param Variant[] $variants
      * @return Product
      */
-    public function setVariants(array $variants) {
+    public function setVariants(array $variants): self {
         $this->variants = [];
         foreach ($variants as $variant) {
             $this->addVariant($variant);
@@ -77,11 +77,11 @@ class Product extends AbstractItem {
     /**
      * @return Category[]
      */
-    public function getCategories() {
+    public function getCategories(): array {
         return $this->categories;
     }
 
-    public function addCategory(Category $category) {
+    public function addCategory(Category $category): self {
         $this->categories[] = $category;
         return $this;
     }
@@ -90,7 +90,7 @@ class Product extends AbstractItem {
      * @param Category[] $categories
      * @return Product
      */
-    public function setCategories(array $categories) {
+    public function setCategories(array $categories): self {
         $this->categories = [];
         foreach ($categories as $category) {
             $this->addCategory($category);
@@ -101,11 +101,11 @@ class Product extends AbstractItem {
     /**
      * @return Video[]
      */
-    public function getVideos() {
+    public function getVideos(): array {
         return $this->videos;
     }
 
-    public function addVideo(Video $video) {
+    public function addVideo(Video $video): self {
         $this->videos[] = $video;
         return $this;
     }
@@ -114,7 +114,7 @@ class Product extends AbstractItem {
      * @param Video[] $videos
      * @return Product
      */
-    public function setVideos(array $videos) {
+    public function setVideos(array $videos): self {
         $this->categories = [];
         foreach ($videos as $video) {
             $this->addVideo($video);
@@ -122,146 +122,83 @@ class Product extends AbstractItem {
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription() {
+    public function getDescription():?string {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return Product
-     */
-    public function setDescription($description) {
+    public function setDescription(?string $description): self {
         $this->description = $description;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFullDescription() {
+    public function getFullDescription():?string {
         return $this->fullDescription;
     }
 
-    /**
-     * @param string $fullDescription
-     * @return Product
-     */
-    public function setFullDescription($fullDescription) {
+    public function setFullDescription(?string $fullDescription): self {
         $this->fullDescription = $fullDescription;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getUrl() {
+    public function getUrl():?string {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     * @return Product
-     */
-    public function setUrl($url) {
+    public function setUrl(?string $url): self {
         $this->url = $url;
         return $this;
     }
 
-    /**
-     * @return float
-     */
-    public function getVatRate() {
+    public function getVatRate():?float {
         return $this->vatRate;
     }
 
-    /**
-     * @param float $vatRate
-     * @return Product
-     */
-    public function setVatRate($vatRate) {
+    public function setVatRate(?float $vatRate): self {
         $this->vatRate = $vatRate;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getWarranty() {
+    public function getWarranty():?int {
         return $this->warranty;
     }
 
-    /**
-     * @param int $warranty
-     * @return Product
-     */
-    public function setWarranty($warranty) {
+    public function setWarranty(?int $warranty): self {
         $this->warranty = $warranty;
         return $this;
     }
 
-    /**
-     * @return Brand
-     */
-    public function getBrand() {
+    public function getBrand():?Brand {
         return $this->brand;
     }
 
-    /**
-     * @param Brand $brand
-     * @return Product
-     */
-    public function setBrand(Brand $brand) {
+    public function setBrand(Brand $brand): self {
         $this->brand = $brand;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreated() {
+    public function getCreated(): \DateTime {
         return $this->created;
     }
 
-    /**
-     * @param \DateTime $created
-     * @return Product
-     */
-    public function setCreated(\DateTime $created) {
+    public function setCreated(\DateTime $created): self {
         $this->created = $created;
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isDeleted() {
+    public function isDeleted(): bool {
         return $this->deleted;
     }
 
-    /**
-     * @param boolean $deleted
-     * @return Product
-     */
-    public function setDeleted($deleted) {
+    public function setDeleted(bool $deleted) {
         $this->deleted = $deleted;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getChecksum() {
+    public function getChecksum(): string {
         return $this->checksum;
     }
 
-    /**
-     * @param string $checksum
-     * @return Product
-     */
-    public function setChecksum($checksum) {
+    public function setChecksum(string $checksum) {
         $this->checksum = $checksum;
         return $this;
     }

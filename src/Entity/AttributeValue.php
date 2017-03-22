@@ -16,26 +16,20 @@ class AttributeValue {
         $this->attribute = $attribute;
     }
 
-    /**
-     * @return Attribute
-     */
-    public function getAttribute() {
+    public function getAttribute(): Attribute {
         return $this->attribute;
     }
 
     /**
      * @param $value
-     * @return $this
+     * @return self
      */
-    public function addValue($value) {
+    public function addValue($value): self {
         $this->values[] = $value;
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getValues() {
+    public function getValues(): array {
         return $this->values;
     }
 

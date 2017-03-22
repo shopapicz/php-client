@@ -12,10 +12,10 @@
 ## Availability
 | Method | Return type | Arguments |Description |
 | ------------- |-------------| -----| -----|
-| getText | string |   |  |
-| getHours | int |   |  |
-| getCode | int |   |  |
-| getQuantity | int |   |  |
+| getText | string&#124;null |   |  |
+| getHours | int&#124;null |   |  |
+| getCode | string&#124;null |   |  |
+| getQuantity | int&#124;null |   |  |
 | isInStock | bool |   |  |
 | isOutOfStock | bool |   |  |
 | isPreOrder | bool |   |  |
@@ -38,71 +38,71 @@
 | ------------- |-------------| -----| -----|
 | getUid | string |   |  |
 | getUrl | string |   |  |
-| getUpdated | \DateTime |   |  |
+| getUpdated | DateTime |   |  |
 | getMd5 | string |   |  |
 | getUid | string |   |  |
 ## Product
 | Method | Return type | Arguments |Description |
 | ------------- |-------------| -----| -----|
 | getUid | string |   |  |
-| getName | string |   |  |
-| getEan | string |   |  |
-| getCode | string |   |  |
-| getUpdated | \DateTime |   |  |
-| getPrice | float |   |  |
-| getPriceRetail | float |   |  |
+| getName | string&#124;null |   |  |
+| getEan | string&#124;null |   |  |
+| getCode | string&#124;null |   |  |
+| getUpdated | DateTime |   |  |
+| getPrice | float&#124;null |   |  |
+| getPriceRetail | float&#124;null |   |  |
 | getImages | [Image](#image)[] |   |  |
 | getAttributes | [AttributeValue](#attributevalue)[] |   |  |
-| getAttribute | null&#124;[AttributeValue](#attributevalue) | uid  |  |
+| getAttribute | [AttributeValue](#attributevalue)&#124;null | uid  |  |
 | getAvailability | [Availability](#availability) |   |  |
 | getUid | string |   |  |
 | getVariants | [Variant](#variant)[] |   |  |
 | getCategories | [Category](#category)[] |   |  |
 | getVideos | [Video](#video)[] |   |  |
-| getDescription | string |   |  |
-| getFullDescription | string |   |  |
-| getUrl | string |   |  |
-| getVatRate | float |   |  |
-| getWarranty | int |   |  |
-| getBrand | [Brand](#brand) |   |  |
-| getCreated | \DateTime |   |  |
-| isDeleted | boolean |   |  |
+| getDescription | string&#124;null |   |  |
+| getFullDescription | string&#124;null |   |  |
+| getUrl | string&#124;null |   |  |
+| getVatRate | float&#124;null |   |  |
+| getWarranty | int&#124;null |   |  |
+| getBrand | [Brand](#brand)&#124;null |   |  |
+| getCreated | DateTime |   |  |
+| isDeleted | bool |   |  |
 | getChecksum | string |   |  |
-| getName | string |   |  |
-| getEan | string |   |  |
-| getCode | string |   |  |
-| getUpdated | \DateTime |   |  |
-| getPrice | float |   |  |
-| getPriceRetail | float |   |  |
+| getName | string&#124;null |   |  |
+| getEan | string&#124;null |   |  |
+| getCode | string&#124;null |   |  |
+| getUpdated | DateTime |   |  |
+| getPrice | float&#124;null |   |  |
+| getPriceRetail | float&#124;null |   |  |
 | getImages | [Image](#image)[] |   |  |
 | getAttributes | [AttributeValue](#attributevalue)[] |   |  |
-| getAttribute | null&#124;[AttributeValue](#attributevalue) | uid  |  |
+| getAttribute | [AttributeValue](#attributevalue)&#124;null | uid  |  |
 | getAvailability | [Availability](#availability) |   |  |
 | getUid | string |   |  |
 ## Variant
 | Method | Return type | Arguments |Description |
 | ------------- |-------------| -----| -----|
 | getUid | string |   |  |
-| getName | string |   |  |
-| getEan | string |   |  |
-| getCode | string |   |  |
-| getUpdated | \DateTime |   |  |
-| getPrice | float |   |  |
-| getPriceRetail | float |   |  |
+| getName | string&#124;null |   |  |
+| getEan | string&#124;null |   |  |
+| getCode | string&#124;null |   |  |
+| getUpdated | DateTime |   |  |
+| getPrice | float&#124;null |   |  |
+| getPriceRetail | float&#124;null |   |  |
 | getImages | [Image](#image)[] |   |  |
 | getAttributes | [AttributeValue](#attributevalue)[] |   |  |
-| getAttribute | null&#124;[AttributeValue](#attributevalue) | uid  |  |
+| getAttribute | [AttributeValue](#attributevalue)&#124;null | uid  |  |
 | getAvailability | [Availability](#availability) |   |  |
 | getUid | string |   |  |
-| getName | string |   |  |
-| getEan | string |   |  |
-| getCode | string |   |  |
-| getUpdated | \DateTime |   |  |
-| getPrice | float |   |  |
-| getPriceRetail | float |   |  |
+| getName | string&#124;null |   |  |
+| getEan | string&#124;null |   |  |
+| getCode | string&#124;null |   |  |
+| getUpdated | DateTime |   |  |
+| getPrice | float&#124;null |   |  |
+| getPriceRetail | float&#124;null |   |  |
 | getImages | [Image](#image)[] |   |  |
 | getAttributes | [AttributeValue](#attributevalue)[] |   |  |
-| getAttribute | null&#124;[AttributeValue](#attributevalue) | uid  |  |
+| getAttribute | [AttributeValue](#attributevalue)&#124;null | uid  |  |
 | getAvailability | [Availability](#availability) |   |  |
 | getUid | string |   |  |
 ## Video
@@ -110,10 +110,10 @@
 | ------------- |-------------| -----| -----|
 | getUid | string |   |  |
 | getUrl | string |   |  |
-| getUpdated | \DateTime |   |  |
-| getDuration | \DateTime |   |  |
+| getUpdated | DateTime |   |  |
+| getDuration | DateTime&#124;null |   |  |
 | getType | string |   |  |
 | isTypeYoutube | bool |   |  |
 | isTypeVimeo | bool |   |  |
-| getCode | string |   |  |
+| getCode | string&#124;null |   |  |
 | getUid | string |   |  |

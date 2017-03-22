@@ -24,88 +24,57 @@ class Video extends AbstractRecord {
      */
     protected $type, $code;
 
-    /**
-     * @return string
-     */
-    public function getUrl() {
+    public function getUrl(): string {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     */
-    public function setUrl($url) {
+    public function setUrl(string $url): self {
         $this->url = $url;
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getUpdated(): \DateTime {
         return $this->updated;
     }
 
-    /**
-     * @param \DateTime $updated
-     */
-    public function setUpdated(\DateTime $updated) {
+    public function setUpdated(\DateTime $updated): self {
         $this->updated = $updated;
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDuration() {
+    public function getDuration():?\DateTime {
         return $this->duration;
     }
 
-    /**
-     * @param \DateTime $duration
-     */
-    public function setDuration(\DateTime $duration) {
+    public function setDuration(?\DateTime $duration): self {
         $this->duration = $duration;
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getType() {
+    public function getType(): string {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
-    public function setType($type) {
+    public function setType(string $type): self {
         $this->type = $type;
+        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isTypeYoutube() {
+    public function isTypeYoutube(): bool {
         return $this->getType() === self::TYPE_YOUTUBE;
     }
 
-    /**
-     * @return bool
-     */
-    public function isTypeVimeo() {
+    public function isTypeVimeo(): bool {
         return $this->getType() === self::TYPE_VIMEO;
     }
 
-    /**
-     * @return string
-     */
-    public function getCode() {
+    public function getCode():?string {
         return $this->code;
     }
 
-    /**
-     * @param string $code
-     */
-    public function setCode($code) {
+    public function setCode(?string $code): self {
         $this->code = $code;
+        return $this;
     }
 
 

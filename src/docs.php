@@ -21,15 +21,19 @@ function writeMethods(ReflectionClass $class, $fp) {
             $line = ltrim(trim(trim(trim($line), '*')), '/');
             if(strpos($line, '@return') === 0) {
                 $return = trim(substr($line, 7));
-                $return = preg_replace_callback('~[A-Z][a-zA-Z]+~', function ($match) {
-                    if($match[0] === '\\DateTime' || $match[0] === 'DateTime') {
-                        return $match[0];
-                    }
-                    return '[' . $match[0] . '](#' . strtolower($match[0]) . ')';
-                }, $return);
+                $return = addLinks($return);
                 $return = str_replace('|', '&#124;', $return);
             } elseif(strpos($line, '@') !== 0 && !empty($line)) {
                 $description = $line;
+            }
+        }
+        if(!$return) {
+            if($method->hasReturnType()) {
+                $return = str_replace('ShopAPI\\Client\\Entity\\', '', $method->getReturnType());
+                $return = addLinks($return);
+                if($method->getReturnType()->allowsNull()) {
+                    $return .= '&#124;null';
+                }
             }
         }
         $parameters = [];
@@ -38,6 +42,15 @@ function writeMethods(ReflectionClass $class, $fp) {
         }
         fwrite($fp, '| ' . $method->getName() . " | $return | " . implode(', ', $parameters) . "  | $description |\n");
     }
+}
+
+function addLinks(string $return) {
+    return preg_replace_callback('~[A-Z][a-zA-Z]+~', function ($match) {
+        if($match[0] === '\\DateTime' || $match[0] === 'DateTime') {
+            return $match[0];
+        }
+        return '[' . $match[0] . '](#' . strtolower($match[0]) . ')';
+    }, $return);
 }
 
 $fp = fopen($dir . 'api.md', 'w');

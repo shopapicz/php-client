@@ -12,18 +12,11 @@ abstract class AbstractRecord {
         $this->uid = $uid;
     }
 
-    /**
-     * @return string
-     */
-    public function getUid() {
+    public function getUid(): string {
         return $this->uid;
     }
 
-    /**
-     * @param string $uid
-     * @return $this
-     */
-    public function setUid($uid) {
+    public function setUid(string $uid): self {
         $this->uid = $uid;
         return $this;
     }

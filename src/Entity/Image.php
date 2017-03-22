@@ -17,50 +17,29 @@ class Image extends AbstractRecord {
      */
     protected $md5;
 
-    /**
-     * @return string
-     */
-    public function getUrl() {
+    public function getUrl(): string {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     * @return Image
-     */
-    public function setUrl($url) {
+    public function setUrl(string $url): self {
         $this->url = $url;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated() {
+    public function getUpdated(): \DateTime {
         return $this->updated;
     }
 
-    /**
-     * @param \DateTime $updated
-     * @return Image
-     */
     public function setUpdated(\DateTime $updated) {
         $this->updated = $updated;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getMd5() {
+    public function getMd5(): string {
         return $this->md5;
     }
 
-    /**
-     * @param string $md5
-     * @return Image
-     */
-    public function setMd5($md5) {
+    public function setMd5(string $md5) {
         $this->md5 = $md5;
         return $this;
     }
