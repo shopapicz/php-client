@@ -1,9 +1,10 @@
 <?php
 namespace ShopAPI\TestClient;
 
+use PHPUnit\Framework\TestCase;
 use ShopAPI\Client\XmlReader;
 
-class XmlReaderTest extends \PHPUnit_Framework_TestCase {
+class XmlReaderTest extends TestCase {
 
     function testPathReader() {
         $reader = new XmlReader();
