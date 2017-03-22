@@ -26,7 +26,7 @@ class ApiEncoderTest extends TestCase {
         $encoded = (new ApiEncoder())->encodeOrderRequest($orderRequest);
 
         $this->assertEquals('Please hurry!', $encoded['note']);
-        $this->assertEquals('ogd9d5d44h!', $encoded['delivery']);
+        $this->assertEquals('ogd9d5d44h', $encoded['delivery']);
         $this->assertEquals([
             'uid' => 'w5d5v5vd5f',
             'quantity' => 3,
