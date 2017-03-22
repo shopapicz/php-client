@@ -22,29 +22,9 @@ class XmlReader {
             throw new IOException('Temporary file couldn\'t be created');
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->createUrl($uid, $updatedFrom, $preview));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_ENCODING, '');
-        curl_setopt($ch, CURLOPT_FILE, $tmpFile);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'User-agent' => 'Mozilla/5.0 (compatible; ShopAPI/0.1; +https://shopapi.cz)'
-        ]);
-        curl_setopt($ch, CURLOPT_HEADER, false);
+        $client = new HttpClient();
+        $client->download($this->createUrl($uid, $updatedFrom, $preview), $tmpFile);
 
-        if(class_exists('Composer\CaBundle\CaBundle')) {
-            curl_setopt($ch, CURLOPT_CAINFO, \Composer\CaBundle\CaBundle::getBundledCaBundlePath());
-        }
-        $result = curl_exec($ch);
-        if($result === false) {
-            throw new IOException('Unable to establish connection to ShopAPI: curl error (' . curl_errno($ch) . ') - ' . curl_error($ch));
-        }
-
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        if($httpCode !== 200) {
-            throw new IOException('Feed download failed: HTTP ' . $httpCode);
-        }
         $tmpFileMeta = stream_get_meta_data($tmpFile);
         if($tmpFileMeta === false) {
             throw new IOException('Couldn\'t read temporary file metadata');
