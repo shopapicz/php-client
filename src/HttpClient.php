@@ -32,14 +32,14 @@ final class HttpClient {
         $ch = $this->createCurl($url);
         curl_setopt($ch, CURLOPT_FILE, $tmpFile);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        $response = $this->send($ch);
+        $response = $this->send($ch, false);
         if($response->getStatusCode() !== 200) {
             throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());
         }
         return $tmpFile;
     }
 
-    private function send($ch): ResponseInterface {
+    private function send($ch, bool $hasHeader = true): ResponseInterface {
         $result = curl_exec($ch);
         if($result === false) {
             throw new IOException('Unable to establish connection to ShopAPI: curl error (' . curl_errno($ch) . ') - ' . curl_error($ch));
@@ -47,6 +47,11 @@ final class HttpClient {
 
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+        if(!$hasHeader) {
+            return new Response($httpCode, [], $result);
+        }
+
         list($header, $body) = explode("\r\n\r\n", str_replace("HTTP/1.1 100 Continue\r\n\r\n", "", $result), 2);
 
         return new Response($httpCode, explode("\r\n", $header), $body);
