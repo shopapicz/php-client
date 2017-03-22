@@ -17,13 +17,8 @@ class XmlReader {
             $uid = $m[1];
         }
 
-        $tmpFile = tmpfile();
-        if(!$tmpFile) {
-            throw new IOException('Temporary file couldn\'t be created');
-        }
-
         $client = new HttpClient();
-        $client->download($this->createUrl($uid, $updatedFrom, $preview), $tmpFile);
+        $tmpFile = $client->download($this->createUrl($uid, $updatedFrom, $preview));
 
         $tmpFileMeta = stream_get_meta_data($tmpFile);
         if($tmpFileMeta === false) {

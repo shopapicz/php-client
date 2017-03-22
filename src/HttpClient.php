@@ -24,14 +24,18 @@ final class HttpClient {
         return $this->send($ch);
     }
 
-    public function download(string $url, $file): ResponseInterface {
+    public function download(string $url) {
+        $tmpFile = tmpfile();
+        if(!$tmpFile) {
+            throw new IOException('Temporary file couldn\'t be created');
+        }
         $ch = $this->createCurl($url);
-        curl_setopt($ch, CURLOPT_FILE, $file);
+        curl_setopt($ch, CURLOPT_FILE, $tmpFile);
         $response = $this->send($ch);
         if($response->getStatusCode() !== 200) {
             throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());
         }
-        return $response;
+        return $tmpFile;
     }
 
     private function send($ch): ResponseInterface {
