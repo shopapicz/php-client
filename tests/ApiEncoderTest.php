@@ -28,8 +28,7 @@ class ApiEncoderTest extends TestCase {
         $this->assertEquals('Please hurry!', $encoded['note']);
         $this->assertEquals('ogd9d5d44h', $encoded['delivery']);
         $this->assertEquals([
-            'uid' => 'w5d5v5vd5f',
-            'quantity' => 3,
+            ['uid' => 'w5d5v5vd5f', 'quantity' => 3,]
         ], $encoded['items']);
         $this->assertEquals('John', $encoded['address']['delivery']['first_name']);
         $this->assertEquals('Smith', $encoded['address']['delivery']['last_name']);
