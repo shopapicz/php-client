@@ -31,6 +31,7 @@ final class HttpClient {
         }
         $ch = $this->createCurl($url);
         curl_setopt($ch, CURLOPT_FILE, $tmpFile);
+        curl_setopt($ch, CURLOPT_HEADER, false);
         $response = $this->send($ch);
         if($response->getStatusCode() !== 200) {
             throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());
