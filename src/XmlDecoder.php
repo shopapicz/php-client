@@ -262,7 +262,7 @@ class XmlDecoder {
             $video->setUrl((string)$it->url);
         }
         if(isset($it->duration)) {
-            $video->setUrl(\DateTime::createFromFormat('H:m:i', $it->duration));
+            $video->setDuration(\DateTime::createFromFormat('H:m:i', $it->duration));
         }
         $video->setCode((string)$it['code']);
         $video->setType((string)$it['type']);
