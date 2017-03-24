@@ -1,4 +1,5 @@
 <?php
+
 namespace ShopAPI\Client\Api;
 
 use Psr\Http\Message\ResponseInterface;
@@ -53,7 +54,12 @@ class ApiClient {
         if($httpResponse->getStatusCode() > 499) {
             throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode(), $httpResponse->getStatusCode());
         }
-        $responseData = strpos($httpResponse->getHeader('content-type'), 'application/json') !== false ? json_decode($httpResponse->getBody(), true) : [];
+        if(!empty($httpResponse->getHeader('content-type')) && strpos($httpResponse->getHeader('content-type')[0], 'application/json') !== false) {
+            $responseData = json_decode($httpResponse->getBody(), true);
+        } else {
+            $responseData = [];
+        }
+
         if($httpResponse->getStatusCode() === 401 || $httpResponse->getStatusCode() === 403) {
             if(isset($responseData['error'])) {
                 throw new UnauthorizedException(

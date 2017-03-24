@@ -1,4 +1,5 @@
 <?php
+
 namespace ShopAPI\Client;
 
 use GuzzleHttp\Psr7\Response;
@@ -46,15 +47,35 @@ final class HttpClient {
         }
 
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $responseHeaders = '';
+        $responseContent = $result;
+
+        $headersSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         curl_close($ch);
 
-        if(!$hasHeader) {
-            return new Response($httpCode, [], $result);
+        if($headersSize) {
+            $responseHeaders = rtrim(substr($result, 0, $headersSize));
+            $responseContent = (strlen($result) === $headersSize)
+                ? ''
+                : substr($result, $headersSize);
+        }
+        // Split headers blocks
+        $responseHeaders = preg_split('/(\\r?\\n){2}/', $responseHeaders);
+        $responseHeaders = preg_split('/\\r?\\n/', array_pop($responseHeaders));
+        $headers = [];
+        foreach ($responseHeaders as $header) {
+            if(preg_match('/^HTTP\/(1\.\d) +([1-5][0-9]{2}) +.+$/', $header, $matches)) {
+                $headers['Protocol-Version'] = $matches[1];
+                $headers['Status'] = $matches[2];
+            } elseif(strpos($header, ':') !== false) {
+                list($name, $value) = explode(':', $header, 2);
+                $headers[$name] = trim($value);
+            }
         }
 
-        list($header, $body) = explode("\r\n\r\n", str_replace("HTTP/1.1 100 Continue\r\n\r\n", "", $result), 2);
 
-        return new Response($httpCode, explode("\r\n", $header), $body);
+        return new Response($httpCode, $headers, $responseContent);
     }
 
     private function createCurl(string $url, array $headers = []) {
