@@ -42,7 +42,7 @@ class ApiRequestException extends IOException {
     public function __construct(array $messages = [], array $fieldsMessages = [], $code = 0, Exception $previous = null) {
         $message = $messages;
         foreach ($fieldsMessages as $name => $value) {
-            $messages[] = $name . ': ' . $value;
+            $messages[] = $name . ': ' . implode(', ', $value);
         }
         parent::__construct(implode("\n", $message), $code, $previous);
         $this->messages = $messages;
