@@ -46,7 +46,7 @@ class ApiClient {
         if($httpResponse->getStatusCode() === 201) {
             return new OrderResponse($responseData['code'], $responseData['message']);
         }
-        throw new IOException('ShopAPI request failed with HTTP code ', $httpResponse->getStatusCode());
+        throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode(), $httpResponse->getStatusCode());
     }
 
 
