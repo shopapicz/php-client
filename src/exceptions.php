@@ -1,4 +1,5 @@
 <?php
+
 namespace ShopAPI\Client;
 
 use Exception;
@@ -39,7 +40,11 @@ class ApiRequestException extends IOException {
     private $fieldsMessages;
 
     public function __construct(array $messages = [], array $fieldsMessages = [], $code = 0, Exception $previous = null) {
-        parent::__construct(implode("\n", $messages), $code, $previous);
+        $message = $messages;
+        foreach ($fieldsMessages as $name => $value) {
+            $messages[] = $name . ': ' . $value;
+        }
+        parent::__construct(implode("\n", $message), $code, $previous);
         $this->messages = $messages;
         $this->fieldsMessages = $fieldsMessages;
     }

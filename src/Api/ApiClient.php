@@ -73,7 +73,10 @@ class ApiClient {
             );
         }
         if($httpResponse->getStatusCode() === 400) {
-            throw new ApiRequestException($responseData['error']['message'], $responseData['error']['fields'], $responseData['error']['code']);
+            if(isset($responseData['error']['messages'])) {
+                throw new ApiRequestException($responseData['error']['messages'], $responseData['error']['fields'], $responseData['error']['code']);
+            }
+            throw new ApiRequestException([$responseData['error']['message']], [], $responseData['error']['code']);
         }
     }
 }
