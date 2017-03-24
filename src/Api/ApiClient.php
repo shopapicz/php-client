@@ -41,6 +41,17 @@ class ApiClient {
         $data = $this->encoder->encodeOrderRequest($orderRequest);
 
         $httpResponse = $this->http->postJson($this->baseUrl . 'orders', $data, $this->config->getUsername(), $this->config->getPassword());
+        return $this->resolveOrderResponse($httpResponse);
+    }
+
+    public function validateOrder(OrderRequest $orderRequest): OrderResponse {
+        $data = $this->encoder->encodeOrderRequest($orderRequest);
+
+        $httpResponse = $this->http->postJson($this->baseUrl . 'orders?dryRun=true', $data, $this->config->getUsername(), $this->config->getPassword());
+        return $this->resolveOrderResponse($httpResponse);
+    }
+
+    private function resolveOrderResponse(ResponseInterface $httpResponse): OrderResponse {
         $this->resolveError($httpResponse);
         $responseData = json_decode($httpResponse->getBody(), true);
         if($httpResponse->getStatusCode() === 201) {
