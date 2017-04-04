@@ -60,7 +60,7 @@ class ApiClient {
         $list = [];
         $response = $this->http->get($this->baseUrl . 'deliveries', ['fields' => implode(',', $fields)], $this->config->getUsername(), $this->config->getPassword());
         $this->resolveError($response);
-        $response = json_decode($response, true);
+        $response = json_decode($response->getBody(), true);
         foreach ($response as $item) {
             $delivery = new Delivery($item['id']);
             if(isset($item['name'])) {
