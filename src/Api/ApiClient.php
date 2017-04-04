@@ -7,6 +7,7 @@ use ShopAPI\Client\Api\OrderRequest\OrderRequest;
 use ShopAPI\Client\Api\OrderRequest\OrderResponse;
 use ShopAPI\Client\ApiRequestException;
 use ShopAPI\Client\Entity\Delivery;
+use ShopAPI\Client\FieldList\DeliveryFields;
 use ShopAPI\Client\HttpClient;
 use ShopAPI\Client\IOException;
 use ShopAPI\Client\UnauthorizedException;
@@ -53,12 +54,12 @@ class ApiClient {
     }
 
     /**
-     * @param string[] $fields
+     * @param DeliveryFields $fields
      * @return Delivery[]
      */
-    public function getDeliveries(array $fields): array {
+    public function getDeliveries(DeliveryFields $fields): array {
         $list = [];
-        $response = $this->http->get($this->baseUrl . 'deliveries', ['fields' => implode(',', $fields)], $this->config->getUsername(), $this->config->getPassword());
+        $response = $this->http->get($this->baseUrl . 'deliveries', ['fields' => (string)$fields], $this->config->getUsername(), $this->config->getPassword());
         $this->resolveError($response);
         $response = json_decode($response->getBody(), true);
         foreach ($response as $item) {

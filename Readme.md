@@ -131,6 +131,20 @@ use ShopAPI\Client\Api\ApiConfig;
 $client = new ApiClient(new ApiConfig('username', 'password'));
 ```
 
+### Seznam způsobů dodání
+```php
+<?php
+use ShopAPI\Client\Api\ApiClient;
+use ShopAPI\Client\Api\ApiConfig;
+use ShopAPI\Client\FieldList\DeliveryFields;
+
+$client = new ApiClient(new ApiConfig('username', 'password'));
+$returnFields = (new DeliveryFields())->addName();
+foreach($client->getDeliveries($returnFields) as $delivery) {
+    echo $delivery->getName() . "\n";
+}
+```
+
 ### Odeslání nové objednávky
 ```php
 <?php
