@@ -6,10 +6,6 @@ use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
 final class HttpClient {
-    public function get(string $url): ResponseInterface {
-        $ch = $this->createCurl($url);
-        return $this->send($ch);
-    }
 
     public function postJson(string $url, array $data, string $username, string $password) {
         $data = json_encode($data);
@@ -22,6 +18,19 @@ final class HttpClient {
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        return $this->send($ch);
+    }
+
+    public function get(string $url, array $query, string $username, string $password) {
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        if(!empty($query)) {
+            $url .= '?' . http_build_query($query);
+        }
+        $ch = $this->createCurl($url, $headers);
+        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+
         return $this->send($ch);
     }
 

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use ShopAPI\Client\Api\OrderRequest\OrderRequest;
 use ShopAPI\Client\Api\OrderRequest\OrderResponse;
 use ShopAPI\Client\ApiRequestException;
+use ShopAPI\Client\Entity\Delivery;
 use ShopAPI\Client\HttpClient;
 use ShopAPI\Client\IOException;
 use ShopAPI\Client\UnauthorizedException;
@@ -49,6 +50,25 @@ class ApiClient {
 
         $httpResponse = $this->http->postJson($this->baseUrl . 'orders?dryRun=true', $data, $this->config->getUsername(), $this->config->getPassword());
         return $this->resolveOrderResponse($httpResponse);
+    }
+
+    /**
+     * @param string[] $fields
+     * @return Delivery[]
+     */
+    public function getDeliveries(array $fields): array {
+        $list = [];
+        $response = $this->http->get($this->baseUrl . 'deliveries', ['fields' => implode(',', $fields)], $this->config->getUsername(), $this->config->getPassword());
+        $this->resolveError($response);
+        $response = json_decode($response, true);
+        foreach ($response as $item) {
+            $delivery = new Delivery($item['id']);
+            if(isset($item['name'])) {
+                $delivery->setName($item['name']);
+            }
+            $list[] = $delivery;
+        }
+        return $list;
     }
 
     private function resolveOrderResponse(ResponseInterface $httpResponse): OrderResponse {
