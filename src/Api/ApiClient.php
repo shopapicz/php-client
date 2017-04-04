@@ -49,7 +49,7 @@ class ApiClient {
         $data = $this->encoder->encodeOrderRequest($orderRequest);
 
         $httpResponse = $this->http->postJson($this->baseUrl . 'orders?dryRun=true', $data, $this->config->getUsername(), $this->config->getPassword());
-        return $this->resolveOrderResponse($httpResponse);
+        return $this->resolveOrderResponse($httpResponse, true);
     }
 
     /**
@@ -71,10 +71,13 @@ class ApiClient {
         return $list;
     }
 
-    private function resolveOrderResponse(ResponseInterface $httpResponse): OrderResponse {
+    private function resolveOrderResponse(ResponseInterface $httpResponse, bool $validateOnly = false): OrderResponse {
         $this->resolveError($httpResponse);
         $responseData = json_decode($httpResponse->getBody(), true);
         if($httpResponse->getStatusCode() === 201) {
+            if($validateOnly) {
+                return new OrderResponse('00000000000', $responseData['message']);
+            }
             return new OrderResponse($responseData['code'], $responseData['message']);
         }
         throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode(), $httpResponse->getStatusCode());
