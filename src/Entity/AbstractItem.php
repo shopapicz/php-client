@@ -32,6 +32,11 @@ abstract class AbstractItem extends AbstractRecord {
      */
     protected $availability;
 
+    /**
+     * @var int|null
+     */
+    protected $weight;
+
     public function getName():?string {
         return $this->name;
     }
@@ -143,5 +148,13 @@ abstract class AbstractItem extends AbstractRecord {
         return $this;
     }
 
+    public function getWeight():?int {
+        return $this->weight;
+    }
+
+    public function setWeight(?int $weight): self {
+        $this->weight = $weight;
+        return $this;
+    }
 
 }

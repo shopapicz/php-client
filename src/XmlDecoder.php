@@ -110,6 +110,10 @@ class XmlDecoder {
 
         }
 
+        if(isset($it->weight)) {
+            $item->setWeight((int)$it->weight);
+        }
+
         if(isset($it->img)) {
             foreach ($it->img as $img) {
                 $item->addImage($this->decodeImage($img));
