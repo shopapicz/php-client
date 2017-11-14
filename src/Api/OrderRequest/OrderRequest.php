@@ -25,6 +25,8 @@ class OrderRequest {
      */
     private $delivery;
 
+    private $merge = false;
+
     /**
      * @var OrderRequestItem[]
      */
@@ -79,6 +81,15 @@ class OrderRequest {
         } else {
             $this->items[$uid] = new OrderRequestItem($uid, $quantity);
         }
+        return $this;
+    }
+
+    public function isMerge(): bool {
+        return $this->merge;
+    }
+
+    public function setMerge(bool $merge): OrderRequest {
+        $this->merge = $merge;
         return $this;
     }
 }
