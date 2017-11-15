@@ -1,4 +1,5 @@
 <?php
+
 namespace ShopAPI\TestClient;
 
 use PHPUnit\Framework\TestCase;
@@ -21,7 +22,8 @@ class ApiEncoderTest extends TestCase {
                 ->setHouseNumber('10a')
                 ->setCity('Prague')
                 ->setCountry('CZ')
-            );
+            )
+            ->setMerge(true);
 
         $encoded = (new ApiEncoder())->encodeOrderRequest($orderRequest);
 
@@ -36,6 +38,7 @@ class ApiEncoderTest extends TestCase {
         $this->assertEquals('10a', $encoded['address']['delivery']['house_number']);
         $this->assertEquals('Prague', $encoded['address']['delivery']['city']);
         $this->assertEquals('CZ', $encoded['address']['delivery']['country']);
+        $this->assertEquals('1', $encoded['merge']);
 
     }
 }

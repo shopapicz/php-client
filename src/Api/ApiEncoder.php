@@ -28,6 +28,8 @@ class ApiEncoder {
         if($orderRequest->getNote() !== null) {
             $data['note'] = $orderRequest->getNote();
         }
+        $data['merge'] = $orderRequest->isMerge() ? '1' : '0';
+
         if($orderRequest->getDelivery() !== null) {
             $data['delivery'] = $orderRequest->getDelivery()->getUid();
         }
