@@ -8,11 +8,11 @@ class OrderResponse {
     private $code;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $message;
 
-    public function __construct(string $code, string $message) {
+    public function __construct(string $code, ?string $message) {
         $this->code = $code;
         $this->message = $message;
     }
@@ -21,7 +21,7 @@ class OrderResponse {
         return $this->code;
     }
 
-    public function getMessage(): string {
+    public function getMessage(): ?string {
         return $this->message;
     }
 }
