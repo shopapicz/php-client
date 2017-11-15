@@ -41,4 +41,24 @@ class ApiEncoderTest extends TestCase {
         $this->assertEquals('1', $encoded['merge']);
 
     }
+
+    public function testOrderRequestMerge() {
+        $orderRequest = new OrderRequest();
+        $orderRequest->setMerge(true);
+        $encoded = (new ApiEncoder())->encodeOrderRequest($orderRequest);
+        $this->assertEquals('1', $encoded['merge']);
+    }
+
+    public function testOrderRequestNoMerge() {
+        $orderRequest = new OrderRequest();
+        $orderRequest->setMerge(false);
+        $encoded = (new ApiEncoder())->encodeOrderRequest($orderRequest);
+        $this->assertEquals('0', $encoded['merge']);
+    }
+
+    public function testOrderRequestDefaultMerge() {
+        $orderRequest = new OrderRequest();
+        $encoded = (new ApiEncoder())->encodeOrderRequest($orderRequest);
+        $this->assertEquals('0', $encoded['merge']);
+    }
 }
