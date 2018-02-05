@@ -2,7 +2,7 @@
 
 namespace ShopAPI\Client;
 
-use Exception;
+use GuzzleHttp\Psr7\Response;
 
 abstract class RuntimeException extends \RuntimeException {
 
@@ -39,7 +39,12 @@ class ApiRequestException extends IOException {
      */
     private $fieldsMessages;
 
-    public function __construct(array $messages = [], array $fieldsMessages = [], $code = 0, Exception $previous = null) {
+    /**
+     * @var Response|null
+     */
+    private $httpResponse;
+
+    public function __construct(array $messages = [], array $fieldsMessages = [], $code = 0, Response $response = null) {
         $message = $messages;
         foreach ($fieldsMessages as $name => $value) {
             $valueCopy = $value;
@@ -49,9 +54,10 @@ class ApiRequestException extends IOException {
             });
             $messages[] = $name . ': ' . implode(', ', $values);
         }
-        parent::__construct(implode("\n", $message), $code, $previous);
+        parent::__construct(implode("\n", $message), $code);
         $this->messages = $messages;
         $this->fieldsMessages = $fieldsMessages;
+        $this->httpResponse = $response;
     }
 
     public function getMessages(): array {
@@ -63,7 +69,11 @@ class ApiRequestException extends IOException {
     }
 
     public function getFieldMessages(string $fieldName): array {
-        return $this->fieldsMessages[$fieldName]??[];
+        return $this->fieldsMessages[$fieldName] ?? [];
+    }
+
+    public function getHttpResponse(): ?Response {
+        return $this->httpResponse;
     }
 
 }
