@@ -111,7 +111,10 @@ class ApiClient {
             if(isset($responseData['error']['messages'])) {
                 throw new ApiRequestException($responseData['error']['messages'], $responseData['error']['fields'], $responseData['error']['code'], $httpResponse);
             }
-            throw new ApiRequestException([$responseData['error']['message']], [], $responseData['error']['code'], $httpResponse);
+            if(isset($responseData['error'])) {
+                throw new ApiRequestException([$responseData['error']['message']], [], $responseData['error']['code'], $httpResponse);
+            }
+            throw new ApiRequestException([$responseData['message']], [], $responseData['code'], $httpResponse);
         }
     }
 }
