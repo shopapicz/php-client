@@ -72,10 +72,10 @@ class XmlReader {
         while ($xml->read() && $xml->name !== 'product') ;
 
         $decoder = new XmlDecoder();
-        while ($xmlData = $xml->readOuterXml()) {
+        do {
+            $xmlData = $xml->readOuterXml();
             yield $decoder->decodeProduct(new \SimpleXMLElement($xmlData));
-            $xml->next('product');
-        }
+        } while($xml->next('product'));
 
         $xml->close();
     }
