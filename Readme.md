@@ -29,9 +29,9 @@ use ShopAPI\Client\XmlReader;
 
 $reader = new XmlReader();
 /*
- * URL XML feedu je https://shopapi.cz/feed/dddd8888eeee
+ * URL XML feedu je https://shopapi.cz/feed/97ef49da-4169-412f-8a76-cd4c501303c2
  */
-foreach ($reader->readFromUrl('dddd8888eeee') as $product) {
+foreach ($reader->readFromUrl('97ef49da-4169-412f-8a76-cd4c501303c2') as $product) {
     echo $product->getName();
 }
 
@@ -92,9 +92,9 @@ use ShopAPI\Client\XmlReader;
 
 $reader = new XmlReader();
 /*
- * URL XML feedu je https://shopapi.cz/feed/dddd8888eeee
+ * URL XML feedu je https://shopapi.cz/feed/97ef49da-4169-412f-8a76-cd4c501303c2
  */
-foreach ($reader->readFromUrl('dddd8888eeee') as $product) {
+foreach ($reader->readFromUrl('97ef49da-4169-412f-8a76-cd4c501303c2') as $product) {
     echo '<h1>' . $product->getName() . '</h1>';
     
     foreach($product->getImages() as $image) {
