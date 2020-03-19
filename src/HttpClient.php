@@ -34,7 +34,7 @@ final class HttpClient {
         return $this->send($ch);
     }
 
-    public function download(string $url) {
+    public function download(string $url, string $apiUser = null, string $apiPassword = null) {
         $tmpFile = tmpfile();
         if(!$tmpFile) {
             throw new IOException('Temporary file couldn\'t be created');
@@ -42,6 +42,11 @@ final class HttpClient {
         $ch = $this->createCurl($url);
         curl_setopt($ch, CURLOPT_FILE, $tmpFile);
         curl_setopt($ch, CURLOPT_HEADER, false);
+
+        if($apiUser !== null && $apiPassword !== null) {
+            curl_setopt($ch, CURLOPT_USERPWD, $apiUser . ':' . $apiPassword);
+        }
+
         $response = $this->send($ch);
         if($response->getStatusCode() !== 200) {
             throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());

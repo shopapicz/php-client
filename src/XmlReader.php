@@ -9,16 +9,17 @@ class XmlReader {
      * @param string $uid
      * @param null $updatedFrom
      * @param bool $preview
+     * @param string|null $apiPassword
      * @return \Generator|Entity\Product[]
      */
-    public function readFromUrl($uid, $updatedFrom = null, $preview = false) {
+    public function readFromUrl($uid, $updatedFrom = null, $preview = false, string $apiPassword = null) {
         if(preg_match('~https://shopapi.cz/feed/([a-z0-9\-]+)~', $uid, $m)) {
             trigger_error("Deprecated parameter \$url - use export UID", E_USER_DEPRECATED);
             $uid = $m[1];
         }
 
         $client = new HttpClient();
-        $tmpFile = $client->download($this->createUrl($uid, $updatedFrom, $preview));
+        $tmpFile = $client->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
 
         $tmpFileMeta = stream_get_meta_data($tmpFile);
         if($tmpFileMeta === false) {
