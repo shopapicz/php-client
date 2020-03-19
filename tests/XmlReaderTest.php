@@ -22,6 +22,7 @@ class XmlReaderTest extends TestCase {
     function testUrl() {
         $reader = new XmlReader();
         $this->assertEquals('https://shopapi.cz/feed/aaaaaa41', $reader->createUrl('aaaaaa41'));
+        $this->assertEquals('https://shopapi.cz/feed/97ef49da-4169-412f-8a76-cd4c501303c2', $reader->createUrl('97ef49da-4169-412f-8a76-cd4c501303c2'));
         $this->assertEquals('https://shopapi.cz/feed/aaaaaa41?preview=true', $reader->createUrl('aaaaaa41', null, true));
         $this->assertEquals('https://shopapi.cz/feed/aaaaaa41?updatedFrom=-12+hours', $reader->createUrl('aaaaaa41', '-12 hours'));
         $this->assertEquals('https://shopapi.cz/feed/aaaaaa41?updatedFrom=-12+hours&preview=true', $reader->createUrl('aaaaaa41', '-12 hours', true));

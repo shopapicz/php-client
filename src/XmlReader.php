@@ -12,7 +12,7 @@ class XmlReader {
      * @return \Generator|Entity\Product[]
      */
     public function readFromUrl($uid, $updatedFrom = null, $preview = false) {
-        if(preg_match('~https://shopapi.cz/feed/([a-z0-9]+)~', $uid, $m)) {
+        if(preg_match('~https://shopapi.cz/feed/([a-z0-9\-]+)~', $uid, $m)) {
             trigger_error("Deprecated parameter \$url - use export UID", E_USER_DEPRECATED);
             $uid = $m[1];
         }
