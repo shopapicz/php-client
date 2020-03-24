@@ -18,7 +18,9 @@
     "lib-curl": "*",
     "php": ">=7.1.0",
     "guzzlehttp/psr7": "~1.4",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "ext-SimpleXML": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "~6.0"
