@@ -74,6 +74,14 @@ class XmlDecoder {
             }
         }
 
+        if(isset($it->compatibility_model)) {
+            $models = [];
+            foreach ($it->compatibility_model as $model) {
+                $models[] = (string)$model['uid'];
+            }
+            $product->setCompatibilityModels($models);
+        }
+
         $product->setChecksum(md5($it->asXML()));
         $this->decodeItem($it, $product);
 

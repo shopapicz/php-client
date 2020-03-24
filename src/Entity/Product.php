@@ -50,6 +50,8 @@ class Product extends AbstractItem {
 
     protected $checksum;
 
+    private $compatibilityModels = [];
+
     /**
      * @return Variant[]
      */
@@ -203,4 +205,12 @@ class Product extends AbstractItem {
         return $this;
     }
 
+    public function getCompatibilityModels(): array {
+        return $this->compatibilityModels;
+    }
+
+    public function setCompatibilityModels(array $compatibilityModels): self {
+        $this->compatibilityModels = $compatibilityModels;
+        return $this;
+    }
 }

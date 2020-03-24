@@ -53,5 +53,6 @@
             <availability code="in_stock" hours="0" quantity="1">ihned k odeslání</availability>
             <code>CB19604108-BLACK-A70</code>
         </variant>
+        <compatibility_model uid="aaaabbbb"/>
     </product>
 </export>

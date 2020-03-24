@@ -1,0 +1,56 @@
+{
+  "uid": "74p3dbcjppwc",
+  "name": "AF1 125 Futura (1990)",
+  "attributes": [
+    {
+      "uid": "2v188xp7jke8",
+      "name": "Typ",
+      "values": [
+        {
+          "uid": "23sfe1vxzp0k",
+          "name": "Motocykly"
+        }
+      ]
+    },
+    {
+      "uid": "e7om3ey2940k",
+      "name": "Zna\u010dka",
+      "values": [
+        {
+          "uid": "er2ex41kcpkc",
+          "name": "APRILIA"
+        }
+      ]
+    },
+    {
+      "uid": "i0wvdc4jwo0g",
+      "name": "Objem motoru",
+      "values": [
+        {
+          "uid": "ao372rgllo0s",
+          "name": "125"
+        }
+      ]
+    },
+    {
+      "uid": "9dmjxdnqitc0",
+      "name": "Rok v\u00fdroby",
+      "values": [
+        {
+          "uid": "6cpy9akwe2w4",
+          "name": "1990"
+        }
+      ]
+    },
+    {
+      "uid": "6f3qz7r5iigw",
+      "name": "Model",
+      "values": [
+        {
+          "uid": "78f5mty9oicc",
+          "name": "AF1 125 Futura"
+        }
+      ]
+    }
+  ]
+}
