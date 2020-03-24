@@ -16,6 +16,24 @@ class XmlDecoderTest extends TestCase {
         $this->assertEquals(6, $availability->getQuantity());
     }
 
+    function testCompatibility() {
+        $decoder = new XmlDecoder();
+        $product = $decoder->decodeProduct($this->getXml());
+
+        $this->assertSame(['aaaabbbb'], $product->getCompatibilityModels());
+    }
+
+    function testRelevantGroups() {
+        $decoder = new XmlDecoder();
+        $product = $decoder->decodeProduct($this->getXml());
+
+        $this->assertCount(1, $product->getRelevantGroups());
+        $this->assertSame('eeeee', $product->getRelevantGroups()[0]->getUid());
+        $this->assertSame('similar', $product->getRelevantGroups()[0]->getName());
+
+        $this->assertSame(['oooo', 'rrrrr'], $product->getRelevantGroups()[0]->getProducts());
+    }
+
     function testCategory() {
         $decoder = new XmlDecoder();
         $category = $decoder->decodeCategory($this->getXml()->category);
@@ -79,7 +97,7 @@ class XmlDecoderTest extends TestCase {
         $this->assertEquals('b9i9ssr4lxk4', $product->getAttribute('b9i9ssr4lxk4')->getAttribute()->getUid());
         $this->assertNull($product->getAttribute('xxx'));
 
-        $this->assertEquals('0f26c54d0a9cd4dbad6c096cfd587847', $product->getChecksum());
+        $this->assertEquals('c71ed2992ac2ca18375f11680aa69bab', $product->getChecksum());
     }
 
     function testVariant() {

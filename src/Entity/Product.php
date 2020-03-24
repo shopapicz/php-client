@@ -52,6 +52,9 @@ class Product extends AbstractItem {
 
     private $compatibilityModels = [];
 
+    /** @var RelevantGroup[] */
+    private $relevantGroups = [];
+
     /**
      * @return Variant[]
      */
@@ -211,6 +214,18 @@ class Product extends AbstractItem {
 
     public function setCompatibilityModels(array $compatibilityModels): self {
         $this->compatibilityModels = $compatibilityModels;
+        return $this;
+    }
+
+    /**
+     * @return RelevantGroup[]
+     */
+    public function getRelevantGroups(): array {
+        return $this->relevantGroups;
+    }
+
+    public function addRelevantGroup(RelevantGroup $group): self {
+        $this->relevantGroups[] = $group;
         return $this;
     }
 }

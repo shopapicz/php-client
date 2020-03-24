@@ -9,6 +9,7 @@ use ShopAPI\Client\Entity\Brand;
 use ShopAPI\Client\Entity\Category;
 use ShopAPI\Client\Entity\Image;
 use ShopAPI\Client\Entity\Product;
+use ShopAPI\Client\Entity\RelevantGroup;
 use ShopAPI\Client\Entity\Variant;
 use ShopAPI\Client\Entity\Video;
 
@@ -71,6 +72,17 @@ class XmlDecoder {
         if(isset($it->variant)) {
             foreach ($it->variant as $variant) {
                 $product->addVariant($this->decodeVariant($variant));
+            }
+        }
+
+        if(isset($it->relevant_group)) {
+            foreach ($it->relevant_group as $groupData) {
+                $group = new RelevantGroup((string)$groupData['uid']);
+                $group->setName((string)$groupData['name']);
+                foreach ($groupData->relevant_product as $id) {
+                    $group->addProduct((string)$id['uid']);
+                }
+                $product->addRelevantGroup($group);
             }
         }
 
