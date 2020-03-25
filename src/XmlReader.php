@@ -7,6 +7,18 @@ class XmlReader {
 
     /**
      * @param string $uid
+     * @param string|null $updatedFrom
+     * @param bool $preview
+     * @param string|null $apiPassword
+     * @return resource
+     */
+    public function download(string $uid, string $updatedFrom = null, bool $preview = false, string $apiPassword = null) {
+        $client = new HttpClient();
+        return $client->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
+    }
+
+    /**
+     * @param string $uid
      * @param null $updatedFrom
      * @param bool $preview
      * @param string|null $apiPassword
@@ -18,8 +30,7 @@ class XmlReader {
             $uid = $m[1];
         }
 
-        $client = new HttpClient();
-        $tmpFile = $client->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
+        $tmpFile = $this->download($uid, $updatedFrom, $preview, $apiPassword);
 
         $tmpFileMeta = stream_get_meta_data($tmpFile);
         if($tmpFileMeta === false) {
