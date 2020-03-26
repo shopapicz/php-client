@@ -42,6 +42,7 @@ final class HttpClient {
         $ch = $this->createCurl($url);
         curl_setopt($ch, CURLOPT_FILE, $tmpFile);
         curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
         if($apiUser !== null && $apiPassword !== null) {
             curl_setopt($ch, CURLOPT_USERPWD, $apiUser . ':' . $apiPassword);
