@@ -12,6 +12,9 @@ class CompatibilityAttribute {
     /** @var CompatibilityAttributeValue[] */
     private $values = [];
 
+    /** @var int|null */
+    private $priority;
+
     public function __construct(string $uid) {
         $this->uid = $uid;
     }
@@ -43,6 +46,15 @@ class CompatibilityAttribute {
 
     public function addValue(CompatibilityAttributeValue $value): self {
         $this->values[] = $value;
+        return $this;
+    }
+
+    public function getPriority(): ?int {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): self {
+        $this->priority = $priority;
         return $this;
     }
 

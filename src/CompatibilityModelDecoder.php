@@ -14,6 +14,9 @@ class CompatibilityModelDecoder {
             foreach ($data->attributes as $attributeData) {
                 $attribute = new CompatibilityAttribute($attributeData->uid);
                 $attribute->setName($attributeData->name);
+                if(isset($attributeData->priority)) {
+                    $attribute->setPriority($attributeData->priority);
+                }
                 foreach ($attributeData->values as $valueData) {
                     $attribute->addValue((new CompatibilityAttributeValue($valueData->uid))->setName($valueData->name));
                 }
