@@ -72,6 +72,7 @@ class XmlDecoderTest extends TestCase {
 
         $this->assertEquals(420, $product->getPrice());
         $this->assertEquals(635, $product->getPriceRetail());
+        $this->assertEquals(700, $product->getPricePreviousRetail());
         $this->assertEquals(21, $product->getVatRate());
 
         $this->assertEquals('88000011212', $product->getEan());
@@ -97,7 +98,7 @@ class XmlDecoderTest extends TestCase {
         $this->assertEquals('b9i9ssr4lxk4', $product->getAttribute('b9i9ssr4lxk4')->getAttribute()->getUid());
         $this->assertNull($product->getAttribute('xxx'));
 
-        $this->assertEquals('c71ed2992ac2ca18375f11680aa69bab', $product->getChecksum());
+        $this->assertEquals('7706adb9eef7ddb9d184f72a2609a85d', $product->getChecksum());
     }
 
     function testVariant() {

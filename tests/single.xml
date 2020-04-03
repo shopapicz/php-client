@@ -12,6 +12,7 @@
         <vat>21</vat>
         <price_vat>420.00</price_vat>
         <price_retail_vat>635.00</price_retail_vat>
+        <price_previous_retail_vat>700.00</price_previous_retail_vat>
         <brand uid="89suej9s5ukg">CHANGE Lingerie</brand>
         <availability code="in_stock" hours="0" quantity="6">ihned k odeslání</availability>
         <category uid="eab3s6feorw4">Podprsenky|vyztužené</category>
