@@ -10,7 +10,7 @@ abstract class AbstractItem extends AbstractRecord {
     /**
      * @var float
      */
-    protected $price, $priceRetail, $pricePreviousRetail;
+    protected $price, $priceRetail, $pricePreviousRetail, $priceMinimalRetail;
 
     /**
      * @var Image[]
@@ -97,6 +97,15 @@ abstract class AbstractItem extends AbstractRecord {
 
     public function setPricePreviousRetail(?float $pricePreviousRetail): self {
         $this->pricePreviousRetail = $pricePreviousRetail;
+        return $this;
+    }
+
+    public function getPriceMinimalRetail(): float {
+        return $this->priceMinimalRetail;
+    }
+
+    public function setPriceMinimalRetail(float $priceMinimalRetail): self {
+        $this->priceMinimalRetail = $priceMinimalRetail;
         return $this;
     }
 

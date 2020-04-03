@@ -129,6 +129,10 @@ class XmlDecoder {
             $item->setPricePreviousRetail((float)$it->price_previous_retail_vat);
         }
 
+        if(isset($it->price_minimal_retail_vat)) {
+            $item->setPriceMinimalRetail((float)$it->price_minimal_retail_vat);
+        }
+
         if(isset($it->availability)) {
             $item->setAvailability($this->decodeAvailability($it->availability));
 
