@@ -22,7 +22,12 @@ class Video extends AbstractRecord {
     /**
      * @var string
      */
-    protected $type, $code, $title;
+    protected $type, $code;
+
+    /**
+     * @var string|null
+     */
+    private $title;
 
     public function getUrl(): string {
         return $this->url;
@@ -77,11 +82,11 @@ class Video extends AbstractRecord {
         return $this;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): ?string {
         return $this->title;
     }
 
-    public function setTitle(string $title): self {
+    public function setTitle(?string $title): self {
         $this->title = $title;
         return $this;
     }
