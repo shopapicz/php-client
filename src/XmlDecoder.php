@@ -299,8 +299,8 @@ class XmlDecoder {
         $video->setCode((string)$it['code']);
         $video->setType((string)$it['type']);
 
-        if(isset($it['title'])) {
-            $video->setTitle((string)$it['title']);
+        if(isset($it->title)) {
+            $video->setTitle((string)$it->title);
         }
 
         return $video;
