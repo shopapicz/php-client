@@ -98,7 +98,18 @@ class XmlDecoderTest extends TestCase {
         $this->assertEquals('b9i9ssr4lxk4', $product->getAttribute('b9i9ssr4lxk4')->getAttribute()->getUid());
         $this->assertNull($product->getAttribute('xxx'));
 
-        $this->assertEquals('7706adb9eef7ddb9d184f72a2609a85d', $product->getChecksum());
+        $this->assertCount(1, $product->getFiles());
+        $this->assertSame('bmssy1z9xh4w', $product->getFiles()[0]->getUid());
+        $this->assertSame('en', $product->getFiles()[0]->getLanguage());
+        $this->assertSame('final-motion-stuff-parts-and-accessories-catalogue-2013-14-2.pdf', $product->getFiles()[0]->getName());
+        $this->assertSame('6879646fe8ba0037b3fd9d08cdd9c962', $product->getFiles()[0]->getMd5());
+        $this->assertSame('pdf', $product->getFiles()[0]->getType());
+        $this->assertSame(4271753, $product->getFiles()[0]->getSize());
+        $this->assertSame('Katalog MOTION STUFF', $product->getFiles()[0]->getTitle());
+        $this->assertSame('https://cdn.shopapi.cz/file/orig/cax7/6/8/79/6879646fe8ba0037b3fd9d08cdd9c962.pdf', $product->getFiles()[0]->getUrl());
+        $this->assertSame('manual', $product->getFiles()[0]->getPurpose());
+
+        $this->assertEquals('f663ef7eaa54fb0f1d353321d4d2ab25', $product->getChecksum());
     }
 
     function testVariant() {

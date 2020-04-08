@@ -7,6 +7,7 @@ use ShopAPI\Client\Entity\AttributeValue;
 use ShopAPI\Client\Entity\Availability;
 use ShopAPI\Client\Entity\Brand;
 use ShopAPI\Client\Entity\Category;
+use ShopAPI\Client\Entity\File;
 use ShopAPI\Client\Entity\Image;
 use ShopAPI\Client\Entity\Product;
 use ShopAPI\Client\Entity\RelevantGroup;
@@ -66,6 +67,12 @@ class XmlDecoder {
         if(isset($it->video)) {
             foreach ($it->video as $video) {
                 $product->addVideo($this->decodeVideo($video));
+            }
+        }
+
+        if(isset($it->file)) {
+            foreach ($it->file as $file) {
+                $product->addFile($this->decodeFile($file));
             }
         }
 
@@ -304,6 +311,43 @@ class XmlDecoder {
         }
 
         return $video;
+    }
+
+    /**
+     * @param \SimpleXMLElement|\SimpleXMLElement[] $it
+     * @return File
+     */
+    public function decodeFile(\SimpleXMLElement $it) {
+        if(!isset($it['uid'])) {
+            throw new InputException('Missing video attribute "uid"');
+        }
+        $file = new File((string)$it['uid']);
+        if(isset($it->url)) {
+            $file->setUrl((string)$it->url);
+        }
+        if(isset($it->size)) {
+            $file->setSize((int)$it->size);
+        }
+        if(isset($it->language)) {
+            $file->setLanguage((string)$it->language);
+        }
+        if(isset($it->name)) {
+            $file->setName((string)$it->name);
+        }
+        if(isset($it->title)) {
+            $file->setTitle((string)$it->title);
+        }
+        if(isset($it->purpose)) {
+            $file->setPurpose((string)$it->purpose);
+        }
+        if(isset($it->md5)) {
+            $file->setMd5((string)$it->md5);
+        }
+        if(isset($it->type)) {
+            $file->setType((string)$it->type);
+        }
+
+        return $file;
     }
 
     /**
