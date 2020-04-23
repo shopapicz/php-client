@@ -86,6 +86,9 @@ class XmlReader {
         $decoder = new XmlDecoder();
         do {
             $xmlData = $xml->readOuterXml();
+            if(empty($xmlData)) {
+                continue;
+            }
             yield $decoder->decodeProduct(new \SimpleXMLElement($xmlData));
         } while($xml->next('product'));
 

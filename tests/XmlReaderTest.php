@@ -6,7 +6,17 @@ use ShopAPI\Client\XmlReader;
 
 class XmlReaderTest extends TestCase {
 
-    function testPathReader() {
+    function testEmpty() {
+        $reader = new XmlReader();
+
+        $items = [];
+        foreach ($reader->readFromPath(__DIR__.'/empty.xml') as $item) {
+            $items[] = $item;
+        }
+        $this->assertCount(0, $items);
+    }
+
+   function testPathReader() {
         $reader = new XmlReader();
 
         $items = [];
