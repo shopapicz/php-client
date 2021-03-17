@@ -4,6 +4,7 @@ namespace ShopAPI\Client\Entity;
 class Availability {
 
     const IN_STOCK = 'in_stock';
+    const IN_EXTERNAL_STOCK = 'in_external_stock';
     const OUT_OF_STOCK = 'out_of_stock';
     const PRE_ORDER = 'pre_order';
     const UNKNOWN = 'unknown';
@@ -57,6 +58,10 @@ class Availability {
 
     public function isInStock(): bool {
         return $this->getCode() === self::IN_STOCK;
+    }
+
+    public function isInExternalStock(): bool {
+        return $this->getCode() === self::IN_EXTERNAL_STOCK;
     }
 
     public function isOutOfStock(): bool {
