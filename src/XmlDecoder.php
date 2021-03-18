@@ -253,6 +253,9 @@ class XmlDecoder {
         if(isset($it['quantity'])) {
             $availability->setQuantity((int)$it['quantity']);
         }
+        if (isset($it['expected'])) {
+            $availability->setExpectedDate(\DateTimeImmutable::createFromFormat('Y-m-d', (string)$it['expected']));
+        }
         if(strlen((string)$it) > 0) {
             $availability->setText((string)$it);
         }

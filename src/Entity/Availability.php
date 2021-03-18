@@ -20,6 +20,9 @@ class Availability {
      */
     protected $hours, $code, $quantity;
 
+    /** @var \DateTimeImmutable|null */
+    public $expectedDate;
+
     public function getText():?string {
         return $this->text;
     }
@@ -74,6 +77,15 @@ class Availability {
 
     public function isUnavailable(): bool {
         return $this->getCode() === self::UNAVAILABLE;
+    }
+
+    public function getExpectedDate(): ?\DateTimeImmutable {
+        return $this->expectedDate;
+    }
+
+    public function setExpectedDate(?\DateTimeImmutable $expectedDate): self {
+        $this->expectedDate = $expectedDate;
+        return $this;
     }
 
 }

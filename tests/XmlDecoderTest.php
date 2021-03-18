@@ -109,7 +109,7 @@ class XmlDecoderTest extends TestCase {
         $this->assertSame('https://cdn.shopapi.cz/file/orig/cax7/6/8/79/6879646fe8ba0037b3fd9d08cdd9c962.pdf', $product->getFiles()[0]->getUrl());
         $this->assertSame('manual', $product->getFiles()[0]->getPurpose());
 
-        $this->assertEquals('f663ef7eaa54fb0f1d353321d4d2ab25', $product->getChecksum());
+        $this->assertEquals('d03406ea76405d0818987832ebb2fa91', $product->getChecksum());
     }
 
     function testVariant() {
@@ -134,6 +134,13 @@ class XmlDecoderTest extends TestCase {
         $this->assertEquals('b9i9ssr4lxk4', $variant->getAttributes()[0]->getAttribute()->getUid());
         $this->assertEquals('Barva', $variant->getAttributes()[0]->getAttribute()->getName());
         $this->assertEquals(['bílá', 'modrá', 'ocelová'], $variant->getAttributes()[0]->getValues());
+    }
+
+    function testVariantAvailability() {
+        $decoder = new XmlDecoder();
+        $variant = $decoder->decodeVariant($this->getXml()->variant[2]);
+
+        self::assertSame('2026-01-03',$variant->getAvailability()->getExpectedDate()->format('Y-m-d'));
     }
 
     function testBrand() {
