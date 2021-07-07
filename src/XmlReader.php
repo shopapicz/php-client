@@ -76,16 +76,19 @@ class XmlReader {
         if(!file_exists($xmlFilePath)) {
             throw new IOException('File "' . $xmlFilePath . '" doesn\'t exist');
         }
+        $errorMode = libxml_use_internal_errors(true);
         $xml = new \XMLReader();
         if(!$xml->open($xmlFilePath)) {
             throw new IOException('Couldn\'t open file ' . $xmlFilePath);
         }
+        $this->checkErrors($errorMode);
 
         while ($xml->read() && $xml->name !== 'product') ;
 
         $decoder = new XmlDecoder();
         do {
             $xmlData = $xml->readOuterXml();
+            $this->checkErrors($errorMode);
             if(empty($xmlData)) {
                 continue;
             }
@@ -93,5 +96,15 @@ class XmlReader {
         } while($xml->next('product'));
 
         $xml->close();
+        libxml_use_internal_errors($errorMode);
+    }
+
+    private function checkErrors(?bool $previousErrorMode): void {
+        $errors = libxml_get_errors();
+        if (!empty($errors)) {
+            libxml_clear_errors();
+            libxml_use_internal_errors($previousErrorMode);
+            throw new IOException($errors[0]->message, $errors[0]->code);
+        }
     }
 }
