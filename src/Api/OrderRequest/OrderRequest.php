@@ -32,6 +32,9 @@ class OrderRequest {
      */
     private $items = [];
 
+    /** @var ?string */
+    private $customerOrderCode;
+
     public function getDeliveryAddress():?Address {
         return $this->deliveryAddress;
     }
@@ -91,5 +94,13 @@ class OrderRequest {
     public function setMerge(bool $merge): OrderRequest {
         $this->merge = $merge;
         return $this;
+    }
+
+    public function getCustomerOrderCode(): ?string {
+        return $this->customerOrderCode;
+    }
+
+    public function setCustomerOrderCode(?string $customerOrderCode): void {
+        $this->customerOrderCode = $customerOrderCode;
     }
 }
