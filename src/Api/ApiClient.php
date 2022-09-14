@@ -81,6 +81,9 @@ class ApiClient {
             }
             return new OrderResponse($responseData['code'], $responseData['message']);
         }
+        if (!empty($responseData['message'])) {
+            throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode() . ': ' . $responseData['message'], $httpResponse->getStatusCode());
+        }
         throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode(), $httpResponse->getStatusCode());
     }
 

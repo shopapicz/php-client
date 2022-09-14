@@ -3,7 +3,7 @@ namespace ShopAPI\Client\Api\OrderRequest;
 
 class OrderResponse {
     /**
-     * @var string
+     * @var ?string
      */
     private $code;
 
@@ -12,12 +12,12 @@ class OrderResponse {
      */
     private $message;
 
-    public function __construct(string $code, ?string $message) {
+    public function __construct(?string $code, ?string $message) {
         $this->code = $code;
         $this->message = $message;
     }
 
-    public function getCode(): string {
+    public function getCode(): ?string {
         return $this->code;
     }
 
