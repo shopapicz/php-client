@@ -12,9 +12,15 @@ class OrderResponse {
      */
     private $message;
 
-    public function __construct(?string $code, ?string $message) {
+    /**
+     * @var string|null
+     */
+    private $artifactsTemporaryUrl;
+
+    public function __construct(?string $code, ?string $message, ?string $artifactsTemporaryUrl) {
         $this->code = $code;
         $this->message = $message;
+        $this->artifactsTemporaryUrl = $artifactsTemporaryUrl;
     }
 
     public function getCode(): ?string {
@@ -23,5 +29,9 @@ class OrderResponse {
 
     public function getMessage(): ?string {
         return $this->message;
+    }
+
+    public function getArtifactsTemporaryUrl(): ?string {
+        return $this->artifactsTemporaryUrl;
     }
 }

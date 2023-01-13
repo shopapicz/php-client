@@ -77,9 +77,9 @@ class ApiClient {
         $responseData = json_decode($httpResponse->getBody(), true);
         if($httpResponse->getStatusCode() === 201) {
             if($validateOnly) {
-                return new OrderResponse('00000000000', $responseData['message']);
+                return new OrderResponse('00000000000', $responseData['message'], empty($responseData['artifactsTemporaryUrl']) ? null : $responseData['artifactsTemporaryUrl']);
             }
-            return new OrderResponse($responseData['code'], $responseData['message']);
+            return new OrderResponse($responseData['code'], $responseData['message'], empty($responseData['artifactsTemporaryUrl']) ? null : $responseData['artifactsTemporaryUrl']);
         }
         if (!empty($responseData['message'])) {
             throw new IOException('ShopAPI request failed with HTTP code ' . $httpResponse->getStatusCode() . ': ' . $responseData['message'], $httpResponse->getStatusCode());
