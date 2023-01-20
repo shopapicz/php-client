@@ -5,23 +5,23 @@ namespace ShopAPI\Client;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
-final class HttpClient {
+final class HttpClient implements HttpClientInterface {
 
-    public function postJson(string $url, array $data, string $username, string $password) {
-        $data = json_encode($data);
+    public function postJson(string $url, array $data, string $username, string $password): ResponseInterface {
+        $encoded = json_encode($data);
         $headers = [
             'Content-Type: application/json',
-            'Content-Length: ' . strlen($data),
+            'Content-Length: ' . strlen($encoded),
         ];
         $ch = $this->createCurl($url, $headers);
         curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
 
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
         return $this->send($ch);
     }
 
-    public function get(string $url, array $query, string $username, string $password) {
+    public function get(string $url, array $query, string $username, string $password) : ResponseInterface{
         $headers = [
             'Content-Type: application/json',
         ];

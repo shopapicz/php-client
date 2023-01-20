@@ -6,6 +6,15 @@ use ShopAPI\Client\Entity\Product;
 class XmlReader {
 
     /**
+     * @var HttpClientInterface
+     */
+    private $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient = null) {
+        $this->httpClient = $httpClient ?: new HttpClient();
+    }
+
+    /**
      * @param string $uid
      * @param string|null $updatedFrom
      * @param bool $preview
@@ -13,8 +22,7 @@ class XmlReader {
      * @return resource
      */
     public function download(string $uid, string $updatedFrom = null, bool $preview = false, string $apiPassword = null) {
-        $client = new HttpClient();
-        return $client->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
+        return $this->httpClient->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
     }
 
     /**

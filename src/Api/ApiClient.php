@@ -9,6 +9,7 @@ use ShopAPI\Client\ApiRequestException;
 use ShopAPI\Client\Entity\Delivery;
 use ShopAPI\Client\FieldList\DeliveryFields;
 use ShopAPI\Client\HttpClient;
+use ShopAPI\Client\HttpClientInterface;
 use ShopAPI\Client\IOException;
 use ShopAPI\Client\UnauthorizedException;
 
@@ -19,7 +20,7 @@ class ApiClient {
     private $config;
 
     /**
-     * @var HttpClient
+     * @var HttpClientInterface
      */
     private $http;
 
@@ -33,9 +34,9 @@ class ApiClient {
      */
     private $encoder;
 
-    public function __construct(ApiConfig $config) {
+    public function __construct(ApiConfig $config, HttpClientInterface $httpClient = null) {
         $this->config = $config;
-        $this->http = new HttpClient();
+        $this->http = $httpClient ?: new HttpClient();
         $this->encoder = new ApiEncoder();
     }
 

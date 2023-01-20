@@ -6,13 +6,21 @@ use ShopAPI\Client\Entity\CompatibilityModel;
 class CompatibilityModelReader {
 
     /**
+     * @var HttpClientInterface
+     */
+    private $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient = null) {
+        $this->httpClient = $httpClient ?: new HttpClient();
+    }
+
+    /**
      * @param string $uid
      * @param string|null $apiPassword
      * @return \Generator|CompatibilityModel[]
      */
     public function read(string $uid, string $apiPassword = null) {
-        $client = new HttpClient();
-        $tmpFile = $client->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword);
+        $tmpFile = $this->httpClient->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword);
 
         $tmpFileMeta = stream_get_meta_data($tmpFile);
         if($tmpFileMeta === false) {
