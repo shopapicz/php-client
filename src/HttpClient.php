@@ -34,7 +34,7 @@ final class HttpClient implements HttpClientInterface {
         return $this->send($ch);
     }
 
-    public function download(string $url, string $apiUser = null, string $apiPassword = null) {
+    public function download(string $url, string $apiUser = null, string $apiPassword = null) : ResponseInterface {
         $tmpFile = tmpfile();
         if(!$tmpFile) {
             throw new IOException('Temporary file couldn\'t be created');
@@ -53,7 +53,7 @@ final class HttpClient implements HttpClientInterface {
         if($response->getStatusCode() !== 200) {
             throw new IOException('ShopAPI download failed with code : HTTP ' . $response->getStatusCode());
         }
-        return $tmpFile;
+        return new Response($response->getStatusCode(), $response->getHeaders(), $tmpFile);
     }
 
     private function send($ch): ResponseInterface {

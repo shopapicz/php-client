@@ -22,7 +22,8 @@ class XmlReader {
      * @return resource
      */
     public function download(string $uid, string $updatedFrom = null, bool $preview = false, string $apiPassword = null) {
-        return $this->httpClient->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword);
+        $stream = $this->httpClient->download($this->createUrl($uid, $updatedFrom, $preview), $uid, $apiPassword)->getBody();
+        return $stream->detach();
     }
 
     /**

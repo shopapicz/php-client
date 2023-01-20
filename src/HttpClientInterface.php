@@ -10,8 +10,5 @@ interface HttpClientInterface {
 
     public function get(string $url, array $query, string $username, string $password): ResponseInterface;
 
-    /**
-     * @return resource
-     */
-    public function download(string $url, string $apiUser = null, string $apiPassword = null);
+    public function download(string $url, string $apiUser = null, string $apiPassword = null): ResponseInterface;
 }

@@ -1,6 +1,7 @@
 <?php
 namespace ShopAPI\Client;
 
+use Psr\Http\Message\StreamInterface;
 use ShopAPI\Client\Entity\CompatibilityModel;
 
 class CompatibilityModelReader {
@@ -20,9 +21,10 @@ class CompatibilityModelReader {
      * @return \Generator|CompatibilityModel[]
      */
     public function read(string $uid, string $apiPassword = null) {
-        $tmpFile = $this->httpClient->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword);
+        /** @var StreamInterface $tmpFile */
+        $tmpFile = $this->httpClient->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword)->getBody()->getMetadata('uri')->getBody();
 
-        $tmpFileMeta = stream_get_meta_data($tmpFile);
+        $tmpFileMeta = $tmpFile->getMetadata();
         if($tmpFileMeta === false) {
             throw new IOException('Couldn\'t read temporary file metadata');
         }
@@ -34,7 +36,7 @@ class CompatibilityModelReader {
             yield $item;
         }
 
-        fclose($tmpFile);
+        $tmpFile->close();
     }
 
     /**
