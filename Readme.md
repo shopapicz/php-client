@@ -1,4 +1,4 @@
-[Build Status](https://github.com/shopapicz/php-client/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/shopapicz/php-client/actions/workflows/ci.yml/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/shopapicz/client/v/stable)](https://packagist.org/packages/shopapicz/client)
 
 
