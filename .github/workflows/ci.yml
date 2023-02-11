@@ -32,3 +32,4 @@ jobs:
         path: src/
         version: 1.9
         level: 5
+        php_version: '8.1'
