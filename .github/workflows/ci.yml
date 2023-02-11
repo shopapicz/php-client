@@ -33,3 +33,4 @@ jobs:
         version: 1.9
         level: 5
         php_version: '8.1'
+        memory_limit: 256M
