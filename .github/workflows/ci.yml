@@ -18,4 +18,5 @@ jobs:
       with:
         bootstrap: vendor/autoload.php
         configuration: phpunit.xml
+        version: 9
         php_version: ${{ matrix.php-version }}
