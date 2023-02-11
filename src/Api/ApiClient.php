@@ -111,7 +111,7 @@ class ApiClient {
                 $httpResponse->getStatusCode()
             );
         }
-        if($httpResponse->getStatusCode() >= 400 && $httpResponse->getStatusCode() < 500) {
+        if($httpResponse->getStatusCode() >= 400) {
             if(isset($responseData['error']['messages'])) {
                 throw new ApiRequestException($responseData['error']['messages'], $responseData['error']['fields'], $responseData['error']['code'], $httpResponse);
             }

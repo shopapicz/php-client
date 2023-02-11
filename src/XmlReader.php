@@ -42,12 +42,6 @@ class XmlReader {
         $tmpFile = $this->download($uid, $updatedFrom, $preview, $apiPassword);
 
         $tmpFileMeta = stream_get_meta_data($tmpFile);
-        if($tmpFileMeta === false) {
-            throw new IOException('Couldn\'t read temporary file metadata');
-        }
-        if(!isset($tmpFileMeta['uri'])) {
-            throw new IOException('Couldn\'t read temporary file path');
-        }
 
         foreach ($this->readFromPath($tmpFileMeta['uri']) as $item) {
             yield $item;

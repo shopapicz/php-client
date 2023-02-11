@@ -16,9 +16,14 @@ class Availability {
     protected $text;
 
     /**
+     * @var string
+     */
+    protected $code;
+
+    /**
      * @var int
      */
-    protected $hours, $code, $quantity;
+    protected $hours, $quantity;
 
     /** @var \DateTimeImmutable|null */
     public $expectedDate;

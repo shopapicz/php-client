@@ -20,3 +20,15 @@ jobs:
         configuration: phpunit.xml
         version: 9
         php_version: ${{ matrix.php-version }}
+
+  phpstan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+    - uses: php-actions/phpstan@v3
+      with:
+        path: src/
+        version: 1.9
+        level: 5
