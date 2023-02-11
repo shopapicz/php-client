@@ -22,7 +22,7 @@ class CompatibilityModelReader {
      */
     public function read(string $uid, string $apiPassword = null) {
         /** @var StreamInterface $tmpFile */
-        $tmpFile = $this->httpClient->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword)->getBody()->getMetadata('uri')->getBody();
+        $tmpFile = $this->httpClient->download('https://shopapi.cz/feed/' . $uid . '/models.ndjson', $uid, $apiPassword)->getBody();
 
         $tmpFileMeta = $tmpFile->getMetadata();
         if($tmpFileMeta === false) {
