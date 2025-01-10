@@ -102,7 +102,8 @@ final class HttpClient implements HttpClientInterface {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge([
-            'User-agent: Mozilla/5.0 (compatible; ShopAPI/0.1; +https://shopapi.cz)'
+            'User-agent: Mozilla/5.0 (compatible; ShopAPI/0.1; +https://shopapi.cz)',
+            'Accept-Encoding: gzip',
         ], $headers));
         curl_setopt($ch, CURLOPT_HEADER, true);
 
